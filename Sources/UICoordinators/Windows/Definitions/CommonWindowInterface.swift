@@ -1,22 +1,23 @@
 //
 //  Created by Łukasz Osiennik on 16/04/2020.
-//  Copyright © 2020 Łukasz Osiennik. All rights reserved.
+//  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
 import UIKit
 
-protocol CommonWindowInterface: AnyObject {
+public protocol CommonWindowInterface: AnyObject {
     
     var delegate: CommonWindowDelegate? { get set }
     
-    var registeredWindowID: RegisteredWindowID { get }
+    var windowID: UUWindowID { get }
+    var windowType: WindowType { get }
     
     func setup(delegate: CommonWindowDelegate?)
 }
 
 extension CommonWindowInterface {
     
-    func setup(delegate: CommonWindowDelegate?) {
+    public func setup(delegate: CommonWindowDelegate?) {
         self.delegate = delegate
     }
 }

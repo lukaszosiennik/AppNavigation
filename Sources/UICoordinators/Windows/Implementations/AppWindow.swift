@@ -1,14 +1,14 @@
 //
 //  Created by Łukasz Osiennik on 10/04/2020.
-//  Copyright © 2020 Łukasz Osiennik. All rights reserved.
+//  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
 import UIKit
 
 final class AppWindow: CommonWindow {
     
-    override init(registeredWindowID: RegisteredWindowID) {
-        super.init(registeredWindowID: registeredWindowID)
+    override init(windowID: UUWindowID, windowType: WindowType) {
+        super.init(windowID: windowID, windowType: windowType)
         
         setup()
     }
@@ -26,6 +26,6 @@ final class AppWindow: CommonWindow {
     }
     
     @objc private func gestureHandler() {
-        delegate?.switchWindowActionInvoked(on: registeredWindowID)
+        delegate?.switchWindowActionInvoked(on: windowID)
     }
 }

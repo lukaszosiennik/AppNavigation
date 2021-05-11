@@ -1,6 +1,6 @@
 //
 //  Created by Łukasz Osiennik on 24/03/2020.
-//  Copyright © 2020 Łukasz Osiennik. All rights reserved.
+//  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
 import UIKit
@@ -48,12 +48,5 @@ final class CoordinatorWindowContent: CoordinatorContentInterface {
         case .makeVisible:
             window.rootViewController = nil
         }
-    }
-}
-
-extension CoordinatorWindowContent: CommonWindowDelegate {
-    
-    func switchWindowActionInvoked(on registeredWindowID: RegisteredWindowID) {
-        delegate?.switchWindowActionInvoked(on: registeredWindowID)
     }
 }
