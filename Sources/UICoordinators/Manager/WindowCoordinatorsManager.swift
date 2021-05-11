@@ -19,11 +19,15 @@ public final class WindowCoordinatorsManager {
     }
     
     public func load(windowID: UUWindowID) throws {
+        guard windowID != keyCoordinatorData?.windowID else {
+            throw WindowCoordinatorsManagerError.cannotLoadKeyWindowID
+        }
+        
         let windowCreator = try registry.windowCreator(with: windowID)
         
         if windowCreator.windowType == .dev {
             guard registry.isRegistered(windowType: .app) else {
-                throw WindowCoordinatorsManagerError.cannotLoadRegisteredDevWindowIDIfAppWindowIDIsNotRegistered
+                throw WindowCoordinatorsManagerError.cannotLoadDevWindowIDIfAppWindowIDIsNotRegistered
             }
         }
         
@@ -39,6 +43,8 @@ public final class WindowCoordinatorsManager {
         guard windowID != keyCoordinatorData?.windowID else {
             throw WindowCoordinatorsManagerError.cannotUnloadKeyWindowID
         }
+        
+        // TODO: WindowCreatorRegistryError.notRegisteredWindowID
         
         guard let index = coordinatorsData.index(forKey: windowID) else {
             throw WindowCoordinatorsManagerError.cannotUnloadNotLoadedWindowID
