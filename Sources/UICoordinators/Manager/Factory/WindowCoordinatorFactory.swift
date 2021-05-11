@@ -5,7 +5,7 @@
 
 final class WindowCoordinatorFactory {
     
-    func create(windowID: UUWindowID, windowCreator: WindowCreator) -> Coordinator {
+    func create(windowID: UUWindowID, windowCreator: WindowCreator) -> WindowCoordinatorData {
         let rootChildCoordinator = Coordinator(
             type: .viewController(
                 params: .init(
@@ -24,6 +24,6 @@ final class WindowCoordinatorFactory {
             )
         )
         
-        return coordinator
+        return WindowCoordinatorData(windowID: windowID, coordinator: coordinator)
     }
 }

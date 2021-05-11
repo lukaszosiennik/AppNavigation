@@ -9,17 +9,13 @@ public final class WindowCoordinatorsManager {
     
     private let coordinatorFactory = WindowCoordinatorFactory()
     
-    private var coordinators: [UUWindowID: Coordinator] = [:]
-    private var keyCoordinator: Coordinator?
+    private var coordinatorsData: [UUWindowID: WindowCoordinatorData] = [:]
+    private var keyCoordinatorData: WindowCoordinatorData?
     
     public init() {}
     
-    public func loadApp() throws {
-        try load(windowID: try registry.firstWindowID(for: .app))
-    }
-    
-    private func loadFirstDev() throws {
-        try load(windowID: try registry.firstWindowID(for: .dev))
+    public func load(_ windowType: WindowType) throws {
+        try load(windowID: try registry.firstWindowID(for: windowType))
     }
     
     public func load(windowID: UUWindowID) throws {
@@ -31,18 +27,42 @@ public final class WindowCoordinatorsManager {
             }
         }
         
-        let coordinator = coordinators[windowID] ?? coordinatorFactory.create(windowID: windowID, windowCreator: windowCreator)
+        let coordinatorData = coordinatorsData[windowID] ?? coordinatorFactory.create(windowID: windowID, windowCreator: windowCreator)
+        coordinatorsData[windowID] = coordinatorData
         
-        changeKeyCoordinator(to: coordinator)
+        changeKeyCoordinator(using: coordinatorData)
         
-        coordinator.display()
+        coordinatorData.coordinator.display()
     }
     
-    private func changeKeyCoordinator(to newKeyCoordinator: Coordinator) {
-        (keyCoordinator?.content as? CoordinatorWindowContent)?.delegate = nil
-        (newKeyCoordinator.content as? CoordinatorWindowContent)?.delegate = self
+    func unload(windowID: UUWindowID) throws {
+        guard windowID != keyCoordinatorData?.windowID else {
+            throw WindowCoordinatorsManagerError.cannotUnloadKeyWindowID
+        }
         
-        keyCoordinator = newKeyCoordinator
+        guard let index = coordinatorsData.index(forKey: windowID) else {
+            throw WindowCoordinatorsManagerError.cannotUnloadNotLoadedWindowID
+        }
+        
+        guard (try? registry.windowCreator(with: windowID))?.windowType != .app else {
+            throw WindowCoordinatorsManagerError.cannotUnloadAppWindowID
+        }
+        
+        coordinatorsData.remove(at: index)
+    }
+    
+    private func changeKeyCoordinator(using newKeyCoordinatorData: WindowCoordinatorData) {
+        coordinatorWindowContent(from: keyCoordinatorData)?.delegate = nil
+        coordinatorWindowContent(from: newKeyCoordinatorData)?.delegate = self
+        
+        keyCoordinatorData = newKeyCoordinatorData
+    }
+}
+
+extension WindowCoordinatorsManager {
+    
+    private func coordinatorWindowContent(from coordinatorData: WindowCoordinatorData?) -> CoordinatorWindowContent? {
+        return coordinatorData?.coordinator.content as? CoordinatorWindowContent
     }
 }
 
@@ -56,9 +76,9 @@ extension WindowCoordinatorsManager: CoordinatorWindowContentDelegate {
         
         switch windowType {
         case .app:
-            try? loadFirstDev()
+            try? load(.dev)
         case .dev:
-            try? loadApp()
+            try? load(.app)
         }
         #endif
     }

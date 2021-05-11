@@ -6,4 +6,7 @@
 public enum WindowCoordinatorsManagerError: Error {
     
     case cannotLoadRegisteredDevWindowIDIfAppWindowIDIsNotRegistered
+    case cannotUnloadKeyWindowID
+    case cannotUnloadNotLoadedWindowID
+    case cannotUnloadAppWindowID
 }
