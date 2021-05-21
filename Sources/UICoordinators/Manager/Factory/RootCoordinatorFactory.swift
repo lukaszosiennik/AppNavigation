@@ -3,9 +3,9 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class WindowCoordinatorFactory {
+final class RootCoordinatorFactory {
     
-    func create(windowID: UUWindowID, windowCreator: WindowCreator) -> WindowCoordinatorData {
+    static func create<DevSecondaryWindowType>(windowCreator: WindowCreator<DevSecondaryWindowType>) -> RootCoordinator<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
         let rootChildCoordinator = Coordinator(
             type: .viewController(
                 params: .init(
@@ -18,12 +18,12 @@ final class WindowCoordinatorFactory {
             type: .window(
                 params: .init(
                     showingType: .makeVisible,
-                    window: windowCreator.createWindow(windowID),
+                    window: windowCreator.createWindow(windowCreator.entity.id),
                     rootChildCoordinator: rootChildCoordinator
                 )
             )
         )
         
-        return WindowCoordinatorData(windowID: windowID, coordinator: coordinator)
+        return RootCoordinator(entity: RootCoordinatorEntity(windowEntity: windowCreator.entity), coordinator: coordinator)
     }
 }

@@ -7,8 +7,8 @@ import UIKit
 
 final class AppWindow: CommonWindow {
     
-    override init(windowID: UUWindowID, windowType: WindowType) {
-        super.init(windowID: windowID, windowType: windowType)
+    override init(windowID: UUWindowID) {
+        super.init(windowID: windowID)
         
         setup()
     }

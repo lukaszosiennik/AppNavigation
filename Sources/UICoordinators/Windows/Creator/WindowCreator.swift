@@ -3,25 +3,20 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct WindowCreator {
+public struct WindowCreator<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
     
-    let windowType: WindowType
+    let entity: WindowEntity<DevSecondaryWindowType>
     
-    let createWindow: Create
+    let createWindow: Window.Create
     let createViewController: ViewController.Create
     
-    public init(windowType: WindowType, createViewController: @autoclosure @escaping ViewController.Create) {
-        self.init(windowType: windowType, createWindow: Self.default(for: windowType), createViewController: createViewController())
+    public init(entity: WindowEntity<DevSecondaryWindowType>, createViewController: @autoclosure @escaping ViewController.Create) {
+        self.init(entity: entity, createWindow: Window.default(for: entity.type), createViewController: createViewController())
     }
     
-    public init(windowType: WindowType, createWindow: @escaping Create, createViewController: @autoclosure @escaping ViewController.Create) {
-        self.windowType = windowType
+    public init(entity: WindowEntity<DevSecondaryWindowType>, createWindow: @escaping Window.Create, createViewController: @autoclosure @escaping ViewController.Create) {
+        self.entity = entity
         self.createWindow = createWindow
         self.createViewController = createViewController
     }
-}
-
-extension WindowCreator {
-            
-    public typealias Create = (_ windowID: UUWindowID) -> CommonWindowAlias
 }

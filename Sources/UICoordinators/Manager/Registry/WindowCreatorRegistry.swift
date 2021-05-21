@@ -3,78 +3,48 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class WindowCreatorRegistry {
+final class WindowCreatorRegistry<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
     
-    private var windowCreators: [UUWindowID: WindowCreator] = [:]
+    private var windowCreatorsSet = Set<WindowCreator<DevSecondaryWindowType>>()
     
-    func register(windowCreator: WindowCreator) throws -> UUWindowID {
-        if windowCreator.windowType == .app {
+    func register(windowCreator: WindowCreator<DevSecondaryWindowType>) throws {
+        if windowCreator.entity.type.isApp {
             guard !isRegistered(windowType: .app) else {
-                throw WindowCreatorRegistryError.appWindowIDAlreadyRegistered
+                throw WindowCreatorRegistryError.appWindowTypeAlreadyRegistered
             }
         }
         
-        let windowID = UUWindowID()
-        windowCreators[windowID] = windowCreator
-        
-        return windowID
+        windowCreatorsSet.insert(windowCreator)
     }
     
-    func isRegistered(windowType: WindowType) -> Bool {
-        return windowCreators.first {
-            $0.value.windowType == windowType
-        } != nil
+    func isRegistered(windowType: WindowType<DevSecondaryWindowType>) -> Bool {
+        return (try? windowCreator(for: windowType)) != nil
     }
     
-    func unregister(windowID: UUWindowID) throws {
-        guard let index = windowCreators.index(forKey: windowID) else {
-            throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowID
+    func unregister(windowType: WindowType<DevSecondaryWindowType>) throws {
+        guard let windowCreator = try? windowCreator(for: windowType)  else {
+            throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowType
         }
         
-        windowCreators.remove(at: index)
+        windowCreatorsSet.remove(windowCreator)
     }
     
     func unregisterAll() throws {
-        guard !windowCreators.isEmpty else {
+        guard !windowCreatorsSet.isEmpty else {
             throw WindowCreatorRegistryError.nothingToUnregister
         }
         
-        windowCreators.removeAll()
+        windowCreatorsSet.removeAll()
     }
 }
 
 extension WindowCreatorRegistry {
     
-    func windowCreator(with windowID: UUWindowID) throws -> WindowCreator {
-        guard let creator = windowCreator(with: windowID) else {
-            throw WindowCreatorRegistryError.notRegisteredWindowID
+    func windowCreator(for windowType: WindowType<DevSecondaryWindowType>) throws -> WindowCreator<DevSecondaryWindowType> {
+        guard let creator = windowCreatorsSet.first(where: { $0.entity.type == windowType }) else {
+            throw WindowCreatorRegistryError.notRegisteredWindowType
         }
         
         return creator
-    }
-    
-    private func windowCreator(with windowID: UUWindowID) -> WindowCreator? {
-        return windowCreators[windowID]
-    }
-}
-
-extension WindowCreatorRegistry {
-    
-    func firstWindowCreator(for windowType: WindowType) throws -> WindowCreator {
-        return try windowCreator(with: try firstWindowID(for: windowType))
-    }
-    
-    func firstWindowID(for windowType: WindowType) throws -> UUWindowID {
-        guard let windowID = firstWindowID(for: windowType) else {
-            throw WindowCreatorRegistryError.notRegisteredWindowForWindowType
-        }
-        
-        return windowID
-    }
-    
-    private func firstWindowID(for windowType: WindowType) -> UUWindowID? {
-        return windowCreators.first {
-            $0.value.windowType == windowType
-        }?.key
     }
 }

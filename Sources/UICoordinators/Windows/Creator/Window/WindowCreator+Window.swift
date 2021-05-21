@@ -5,5 +5,8 @@
 
 extension WindowCreator {
     
-    static func `default`<DevSecondaryWindowType>(for windowType: WindowType<DevSecondaryWindowType>) where DevSecondaryWindowType: WindowTypeInterface {}
+    public enum Window {
+        
+        public typealias Create = (_ windowID: UUWindowID) -> CommonWindowAlias
+    }
 }

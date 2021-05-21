@@ -3,8 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-struct WindowCoordinatorData {
+struct RootCoordinator<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
     
-    let windowID: UUWindowID
+    let entity: RootCoordinatorEntity<DevSecondaryWindowType>
     let coordinator: Coordinator
 }

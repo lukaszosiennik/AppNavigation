@@ -10,11 +10,9 @@ open class CommonWindow: CommonWindowAlias {
     weak public var delegate: CommonWindowDelegate?
     
     public let windowID: UUWindowID
-    public let windowType: WindowType
     
-    public init(windowID: UUWindowID, windowType: WindowType) {
+    public init(windowID: UUWindowID) {
         self.windowID = windowID
-        self.windowType = windowType
         super.init(frame: Self.defaultSize)
     }
     

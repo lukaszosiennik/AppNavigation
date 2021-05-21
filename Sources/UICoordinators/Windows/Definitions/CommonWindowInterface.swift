@@ -10,7 +10,6 @@ public protocol CommonWindowInterface: AnyObject {
     var delegate: CommonWindowDelegate? { get set }
     
     var windowID: UUWindowID { get }
-    var windowType: WindowType { get }
     
     func setup(delegate: CommonWindowDelegate?)
 }
