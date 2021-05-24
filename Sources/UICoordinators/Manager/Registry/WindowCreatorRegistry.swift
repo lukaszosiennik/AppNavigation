@@ -3,11 +3,11 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class WindowCreatorRegistry<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
+final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
     
-    private var windowCreatorsSet = Set<WindowCreator<DevSecondaryWindowType>>()
+    private var windowCreatorsSet = Set<WindowCreator<DevRootWindowType>>()
     
-    func register(windowCreator: WindowCreator<DevSecondaryWindowType>) throws {
+    func register(windowCreator: WindowCreator<DevRootWindowType>) throws {
         if windowCreator.entity.type.isApp {
             guard !isRegistered(windowType: .app) else {
                 throw WindowCreatorRegistryError.appWindowTypeAlreadyRegistered
@@ -17,11 +17,11 @@ final class WindowCreatorRegistry<DevSecondaryWindowType> where DevSecondaryWind
         windowCreatorsSet.insert(windowCreator)
     }
     
-    func isRegistered(windowType: WindowType<DevSecondaryWindowType>) -> Bool {
+    func isRegistered(windowType: WindowType<DevRootWindowType>) -> Bool {
         return (try? windowCreator(for: windowType)) != nil
     }
     
-    func unregister(windowType: WindowType<DevSecondaryWindowType>) throws {
+    func unregister(windowType: WindowType<DevRootWindowType>) throws {
         guard let windowCreator = try? windowCreator(for: windowType)  else {
             throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowType
         }
@@ -40,7 +40,7 @@ final class WindowCreatorRegistry<DevSecondaryWindowType> where DevSecondaryWind
 
 extension WindowCreatorRegistry {
     
-    func windowCreator(for windowType: WindowType<DevSecondaryWindowType>) throws -> WindowCreator<DevSecondaryWindowType> {
+    func windowCreator(for windowType: WindowType<DevRootWindowType>) throws -> WindowCreator<DevRootWindowType> {
         guard let creator = windowCreatorsSet.first(where: { $0.entity.type == windowType }) else {
             throw WindowCreatorRegistryError.notRegisteredWindowType
         }

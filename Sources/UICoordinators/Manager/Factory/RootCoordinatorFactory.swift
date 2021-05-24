@@ -5,7 +5,7 @@
 
 final class RootCoordinatorFactory {
     
-    static func create<DevSecondaryWindowType>(windowCreator: WindowCreator<DevSecondaryWindowType>) -> RootCoordinator<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
+    static func create<DevRootWindowType>(windowCreator: WindowCreator<DevRootWindowType>) -> RootCoordinator<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
         let rootChildCoordinator = Coordinator(
             type: .viewController(
                 params: .init(

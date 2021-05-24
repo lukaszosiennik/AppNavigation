@@ -3,7 +3,7 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum BasicDevSecondaryWindowType: WindowTypeInterface {
+public enum UICoordinatorsDevBranchWindowType: DevBranchWindowTypeInterface {
     
-    case just
+    case test
 }

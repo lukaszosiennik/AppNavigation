@@ -3,16 +3,16 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum WindowType<DevSecondaryWindowType>: WindowTypeInterface where DevSecondaryWindowType: WindowTypeInterface {
+public enum WindowType<DevRootWindowType>: WindowTypeInterface where DevRootWindowType: DevRootWindowTypeInterface {
     
     case app
-    case dev(DevWindowType<DevSecondaryWindowType>)
+    case dev(DevRootWindowType)
 }
 
 extension WindowType {
     
-    public static var dev: WindowType<DevSecondaryWindowType> {
-        return .dev(.main)
+    public static var dev: Self {
+        return .dev(.primary)
     }
 }
 

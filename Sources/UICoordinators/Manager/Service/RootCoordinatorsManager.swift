@@ -3,16 +3,16 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public final class RootCoordinatorsManager<DevSecondaryWindowType> where DevSecondaryWindowType: WindowTypeInterface {
+public final class RootCoordinatorsManager<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
     
-    let windowCreatorRegistry = WindowCreatorRegistry<DevSecondaryWindowType>()
+    let windowCreatorRegistry = WindowCreatorRegistry<DevRootWindowType>()
     
-    private var rootCoordinatorsSet = Set<RootCoordinator<DevSecondaryWindowType>>()
-    private var keyRootCoordinator: RootCoordinator<DevSecondaryWindowType>?
+    private var rootCoordinatorsSet = Set<RootCoordinator<DevRootWindowType>>()
+    private var keyRootCoordinator: RootCoordinator<DevRootWindowType>?
     
     public init() {}
     
-    public func load(_ windowType: WindowType<DevSecondaryWindowType>) throws {
+    public func load(_ windowType: WindowType<DevRootWindowType>) throws {
         guard windowType != keyRootCoordinator?.entity.windowType else {
             throw RootCoordinatorsManagerError.cannotLoadKeyWindowType
         }
@@ -23,7 +23,7 @@ public final class RootCoordinatorsManager<DevSecondaryWindowType> where DevSeco
             }
         }
         
-        let currentRootCoordinator: RootCoordinator<DevSecondaryWindowType>
+        let currentRootCoordinator: RootCoordinator<DevRootWindowType>
         if let coordinator = try? rootCoordinator(for: windowType) {
             currentRootCoordinator = coordinator
         } else {
@@ -41,7 +41,7 @@ public final class RootCoordinatorsManager<DevSecondaryWindowType> where DevSeco
         currentRootCoordinator.coordinator.display()
     }
     
-    func unload(_ windowType: WindowType<DevSecondaryWindowType>) throws {
+    func unload(_ windowType: WindowType<DevRootWindowType>) throws {
         guard windowType != keyRootCoordinator?.entity.windowType else {
             throw RootCoordinatorsManagerError.cannotUnloadKeyWindowType
         }
@@ -61,7 +61,7 @@ public final class RootCoordinatorsManager<DevSecondaryWindowType> where DevSeco
         rootCoordinatorsSet.remove(coordinator)
     }
     
-    private func changeKeyRootCoordinator(using rootCoordinator: RootCoordinator<DevSecondaryWindowType>) {
+    private func changeKeyRootCoordinator(using rootCoordinator: RootCoordinator<DevRootWindowType>) {
         coordinatorWindowContent(from: keyRootCoordinator)?.delegate = nil
         coordinatorWindowContent(from: rootCoordinator)?.delegate = self
         
@@ -71,7 +71,7 @@ public final class RootCoordinatorsManager<DevSecondaryWindowType> where DevSeco
 
 extension RootCoordinatorsManager {
         
-    func rootCoordinator(for windowType: WindowType<DevSecondaryWindowType>) throws -> RootCoordinator<DevSecondaryWindowType> {
+    func rootCoordinator(for windowType: WindowType<DevRootWindowType>) throws -> RootCoordinator<DevRootWindowType> {
         guard let coordinator = rootCoordinatorsSet.first(where: { $0.entity.windowType == windowType }) else {
             throw RootCoordinatorsManagerError.notLoadedWindowType
         }
@@ -82,7 +82,7 @@ extension RootCoordinatorsManager {
 
 extension RootCoordinatorsManager {
     
-    private func coordinatorWindowContent(from rootCoordinator: RootCoordinator<DevSecondaryWindowType>?) -> CoordinatorWindowContent? {
+    private func coordinatorWindowContent(from rootCoordinator: RootCoordinator<DevRootWindowType>?) -> CoordinatorWindowContent? {
         return rootCoordinator?.coordinator.content as? CoordinatorWindowContent
     }
 }
