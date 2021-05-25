@@ -6,24 +6,12 @@
 final class RootCoordinatorFactory {
     
     static func create<DevRootWindowType>(windowCreator: WindowCreator<DevRootWindowType>) -> RootCoordinator<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
-        let rootChildCoordinator = Coordinator(
-            type: .viewController(
-                params: .init(
-                    showingType: .root,
-                    viewController: windowCreator.createViewController()
-                )
+        return RootCoordinator(
+            entity: RootCoordinatorEntity(windowEntity: windowCreator.entity),
+            coordinator: WindowCoordinatorFactory.create(
+                showingType: .makeVisible,
+                windowCreator: windowCreator
             )
         )
-        let coordinator = Coordinator(
-            type: .window(
-                params: .init(
-                    showingType: .makeVisible,
-                    window: windowCreator.createWindow(windowCreator.entity.id),
-                    rootChildCoordinator: rootChildCoordinator
-                )
-            )
-        )
-        
-        return RootCoordinator(entity: RootCoordinatorEntity(windowEntity: windowCreator.entity), coordinator: coordinator)
     }
 }
