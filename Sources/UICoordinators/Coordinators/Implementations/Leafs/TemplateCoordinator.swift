@@ -5,9 +5,9 @@
 
 import UIKit
 
-final class TemplateCoordinator: Coordinator {
+public final class TemplateCoordinator: Coordinator {
     
-    override init(type: CoordinatorType = .navigationController(params: CoordinatorNavigationControllerParams(showingType: .present, rootViewController: UIViewController()))) {
+    public override init(type: CoordinatorType = .navigationController(params: CoordinatorNavigationControllerParams(showingType: .present, rootViewController: UIViewController()))) {
         super.init(type: type)
     }
 }

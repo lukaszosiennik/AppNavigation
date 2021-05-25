@@ -5,8 +5,13 @@
 
 import UIKit
 
-struct CoordinatorViewControllerParams {
+public struct CoordinatorViewControllerParams {
     
     let showingType: CoordinatorViewControllerShowingType
     let viewController: UIViewController
+    
+    public init(showingType: CoordinatorViewControllerShowingType, viewController: UIViewController) {
+        self.showingType = showingType
+        self.viewController = viewController
+    }
 }

@@ -3,7 +3,7 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-enum CoordinatorNavigationControllerShowingType {
+public enum CoordinatorNavigationControllerShowingType {
     
     case undefined
     

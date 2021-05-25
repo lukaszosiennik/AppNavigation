@@ -5,7 +5,7 @@
 
 import UIKit
 
-class Coordinator: CoordinatorInterface {
+public class Coordinator: CoordinatorInterface {
 
     var nodeType: CoordinatorNodeType {
         if parentCoordinator == nil {
@@ -24,13 +24,13 @@ class Coordinator: CoordinatorInterface {
         return content.viewController
     }
     
-    init(type: CoordinatorType) {
+    public init(type: CoordinatorType) {
         self.content = CoordinatorContentFactory.create(for: type)
         
         bindRootChildrenIfAny(for: type)
     }
     
-    func display() {
+    public func display() {
         guard case .window = content.type else {
             return
         }
@@ -38,7 +38,7 @@ class Coordinator: CoordinatorInterface {
         content.display(on: .temporary)
     }
     
-    func displayChild(_ coordinator: Coordinator) {
+    public func displayChild(_ coordinator: Coordinator) {
         if case .window = coordinator.content.type {
             return
         }
@@ -48,7 +48,7 @@ class Coordinator: CoordinatorInterface {
         coordinator.content.display(on: viewController)
     }
     
-    func hide() {
+    public func hide() {
         content.hide()
         
         parentCoordinator?.childCoordinators.removeAll(where: { $0 === self })
