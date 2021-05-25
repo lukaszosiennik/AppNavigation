@@ -8,10 +8,8 @@ final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: De
     private var windowCreatorsSet = Set<WindowCreator<DevRootWindowType>>()
     
     func register(windowCreator: WindowCreator<DevRootWindowType>) throws {
-        if windowCreator.entity.type.isApp {
-            guard !isRegistered(windowType: .app) else {
-                throw WindowCreatorRegistryError.appWindowTypeAlreadyRegistered
-            }
+        guard !isRegistered(windowType: windowCreator.entity.type) else {
+            throw WindowCreatorRegistryError.windowTypeAlreadyRegistered
         }
         
         windowCreatorsSet.insert(windowCreator)

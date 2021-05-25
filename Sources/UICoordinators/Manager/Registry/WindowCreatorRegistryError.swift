@@ -5,7 +5,7 @@
 
 enum WindowCreatorRegistryError: Error {
     
-    case appWindowTypeAlreadyRegistered
+    case windowTypeAlreadyRegistered
     case cannotUnregisterNotRegisteredWindowType
     case nothingToUnregister
     case notRegisteredWindowType
