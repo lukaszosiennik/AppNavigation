@@ -17,15 +17,5 @@ final class AppWindow: CommonWindow {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
-        let twoFingerDoubleTapGesture = UITapGestureRecognizer()
-        twoFingerDoubleTapGesture.numberOfTapsRequired = 2
-        twoFingerDoubleTapGesture.numberOfTouchesRequired = 2
-        twoFingerDoubleTapGesture.addTarget(self, action: #selector(gestureHandler))
-        addGestureRecognizer(twoFingerDoubleTapGesture)
-    }
-    
-    @objc private func gestureHandler() {
-        delegate?.switchWindowActionInvoked(on: windowID)
-    }
+    private func setup() {}
 }
