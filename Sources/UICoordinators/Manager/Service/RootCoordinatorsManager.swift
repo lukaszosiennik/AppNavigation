@@ -5,7 +5,7 @@
 
 public final class RootCoordinatorsManager<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
     
-    let windowCreatorRegistry = WindowCreatorRegistry<DevRootWindowType>()
+    public let windowCreatorRegistry = WindowCreatorRegistry<DevRootWindowType>()
     
     private var rootCoordinatorsSet = Set<RootCoordinator<DevRootWindowType>>()
     private var keyRootCoordinator: RootCoordinator<DevRootWindowType>?
@@ -41,7 +41,7 @@ public final class RootCoordinatorsManager<DevRootWindowType> where DevRootWindo
         currentRootCoordinator.coordinator.display()
     }
     
-    func unload(_ windowType: WindowType<DevRootWindowType>) throws {
+    public func unload(_ windowType: WindowType<DevRootWindowType>) throws {
         guard windowType != keyRootCoordinator?.entity.windowType else {
             throw RootCoordinatorsManagerError.cannotUnloadKeyWindowType
         }

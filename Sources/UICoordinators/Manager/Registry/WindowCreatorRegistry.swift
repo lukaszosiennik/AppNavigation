@@ -3,11 +3,11 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
+public final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
     
     private var windowCreatorsSet = Set<WindowCreator<DevRootWindowType>>()
     
-    func register(windowCreator: WindowCreator<DevRootWindowType>) throws {
+    public func register(windowCreator: WindowCreator<DevRootWindowType>) throws {
         guard !isRegistered(windowType: windowCreator.entity.type) else {
             throw WindowCreatorRegistryError.windowTypeAlreadyRegistered
         }
@@ -15,11 +15,11 @@ final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: De
         windowCreatorsSet.insert(windowCreator)
     }
     
-    func isRegistered(windowType: WindowType<DevRootWindowType>) -> Bool {
+    public func isRegistered(windowType: WindowType<DevRootWindowType>) -> Bool {
         return (try? windowCreator(for: windowType)) != nil
     }
     
-    func unregister(windowType: WindowType<DevRootWindowType>) throws {
+    public func unregister(windowType: WindowType<DevRootWindowType>) throws {
         guard let windowCreator = try? windowCreator(for: windowType)  else {
             throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowType
         }
@@ -27,7 +27,7 @@ final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: De
         windowCreatorsSet.remove(windowCreator)
     }
     
-    func unregisterAll() throws {
+    public func unregisterAll() throws {
         guard !windowCreatorsSet.isEmpty else {
             throw WindowCreatorRegistryError.nothingToUnregister
         }
