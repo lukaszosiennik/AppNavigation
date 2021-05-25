@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class Coordinator: CoordinatorInterface {
+public class Coordinator {
 
     var nodeType: CoordinatorNodeType {
         if parentCoordinator == nil {
@@ -15,8 +15,8 @@ public class Coordinator: CoordinatorInterface {
         }
     }
     
-    weak var parentCoordinator: CoordinatorInterface?
-    var childCoordinators: [CoordinatorInterface] = []
+    weak var parentCoordinator: Coordinator?
+    var childCoordinators: [Coordinator] = []
     
     let content: CoordinatorContentInterface
     
