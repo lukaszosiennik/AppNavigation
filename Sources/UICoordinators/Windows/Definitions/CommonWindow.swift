@@ -39,4 +39,8 @@ open class CommonWindow: CommonWindowAlias {
     }
     
     @objc private func gestureHandler() {}
+    
+    open func setup(delegate: CommonWindowDelegate?) {
+        self.delegate = delegate
+    }
 }

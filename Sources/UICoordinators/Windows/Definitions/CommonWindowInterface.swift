@@ -16,13 +16,6 @@ public protocol CommonWindowInterface: AnyObject {
 
 extension CommonWindowInterface {
     
-    public func setup(delegate: CommonWindowDelegate?) {
-        self.delegate = delegate
-    }
-}
-
-extension CommonWindowInterface {
-    
     static var defaultSize: CGRect {
         return UIScreen.main.bounds
     }

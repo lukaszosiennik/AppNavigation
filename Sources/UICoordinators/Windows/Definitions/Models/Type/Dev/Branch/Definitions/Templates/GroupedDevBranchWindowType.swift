@@ -5,6 +5,6 @@
 
 public enum GroupedDevBranchWindowType<AppTestWindowType, ThirdPartyWindowType>: DevBranchWindowTypeInterface where AppTestWindowType: DevBranchWindowTypeInterface, ThirdPartyWindowType: DevBranchWindowTypeInterface {
     
-    case test(AppTestWindowType)
+    case appTest(AppTestWindowType)
     case thirdParty(ThirdPartyWindowType)
 }
