@@ -6,8 +6,10 @@
 final class RootCoordinatorFactory {
     
     static func create<DevRootWindowType>(windowCreator: WindowCreator<DevRootWindowType>) -> RootCoordinator<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
-        return RootCoordinator(
-            entity: RootCoordinatorEntity(windowEntity: windowCreator.entity),
+        return .init(
+            entity: .init(
+                windowEntity: windowCreator.entity
+            ),
             coordinator: WindowCoordinatorFactory.create(
                 showingType: .makeVisible,
                 windowCreator: windowCreator

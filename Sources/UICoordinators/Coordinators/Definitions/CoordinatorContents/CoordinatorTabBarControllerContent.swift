@@ -17,7 +17,10 @@ final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface
     
     private let showingType: CoordinatorTabBarControllerShowingType
     
-    init(showingType: CoordinatorTabBarControllerShowingType, viewControllers: [UIViewController]) {
+    init(
+        showingType: CoordinatorTabBarControllerShowingType,
+        viewControllers: [UIViewController]
+    ) {
         self.tabBarController = UITabBarController()
         self.tabBarController.viewControllers = viewControllers
         self.showingType = showingType
@@ -32,7 +35,11 @@ final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface
         case .undefined, .root:
             break
         case .present:
-            parentViewController.present(tabBarController, animated: true, completion: nil)
+            parentViewController.present(
+                tabBarController,
+                animated: true,
+                completion: nil
+            )
         }
     }
     
@@ -41,7 +48,10 @@ final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface
         case .undefined, .root:
             break
         case .present:
-            tabBarController.dismiss(animated: true, completion: nil)
+            tabBarController.dismiss(
+                animated: true,
+                completion: nil
+            )
         }
     }
 }

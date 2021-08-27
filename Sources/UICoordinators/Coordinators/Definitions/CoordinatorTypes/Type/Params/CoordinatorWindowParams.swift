@@ -9,7 +9,11 @@ public struct CoordinatorWindowParams {
     let window: CommonWindowAlias
     let rootChildCoordinator: Coordinator
     
-    public init(showingType: CoordinatorWindowShowingType, window: CommonWindowAlias, rootChildCoordinator: Coordinator) {
+    public init(
+        showingType: CoordinatorWindowShowingType,
+        window: CommonWindowAlias,
+        rootChildCoordinator: Coordinator
+    ) {
         self.showingType = showingType
         self.window = window
         self.rootChildCoordinator = rootChildCoordinator

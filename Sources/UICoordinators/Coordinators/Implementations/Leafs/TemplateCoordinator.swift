@@ -7,7 +7,14 @@ import UIKit
 
 public final class TemplateCoordinator: Coordinator {
     
-    public override init(type: CoordinatorType = .navigationController(params: CoordinatorNavigationControllerParams(showingType: .present, rootViewController: UIViewController()))) {
+    public override init(
+        type: CoordinatorType = .navigationController(
+            params: .init(
+                showingType: .present,
+                rootViewController: UIViewController()
+            )
+        )
+    ) {
         super.init(type: type)
     }
 }

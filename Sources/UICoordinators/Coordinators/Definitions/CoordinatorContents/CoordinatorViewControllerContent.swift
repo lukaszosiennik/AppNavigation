@@ -27,9 +27,16 @@ final class CoordinatorViewControllerContent: CoordinatorBasicContentInterface {
         case .undefined, .root:
             break
         case .present:
-            parentViewController.present(viewController, animated: true, completion: nil)
+            parentViewController.present(
+                viewController,
+                animated: true,
+                completion: nil
+            )
         case .push:
-            parentViewController.navigationController?.pushViewController(viewController, animated: true)
+            parentViewController.navigationController?.pushViewController(
+                viewController,
+                animated: true
+            )
         }
     }
     
@@ -38,7 +45,10 @@ final class CoordinatorViewControllerContent: CoordinatorBasicContentInterface {
         case .undefined, .root:
             break
         case .present:
-            viewController.dismiss(animated: true, completion: nil)
+            viewController.dismiss(
+                animated: true,
+                completion: nil
+            )
         case .push:
             viewController.navigationController?.popViewController(animated: true)
         }

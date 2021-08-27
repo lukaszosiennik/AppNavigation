@@ -3,7 +3,12 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum GroupedDevBranchWindowType<AppTestWindowType, ThirdPartyTestWindowType>: DevBranchWindowTypeInterface where AppTestWindowType: DevBranchWindowTypeInterface, ThirdPartyTestWindowType: DevBranchWindowTypeInterface {
+public enum GroupedDevBranchWindowType<
+    AppTestWindowType,
+    ThirdPartyTestWindowType
+>: DevBranchWindowTypeInterface where
+    AppTestWindowType: DevBranchWindowTypeInterface,
+    ThirdPartyTestWindowType: DevBranchWindowTypeInterface {
     
     case appTest(AppTestWindowType)
     case thirdPartyTest(ThirdPartyTestWindowType)

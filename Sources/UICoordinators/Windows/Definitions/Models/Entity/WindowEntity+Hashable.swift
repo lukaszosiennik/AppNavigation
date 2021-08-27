@@ -5,7 +5,10 @@
 
 extension WindowEntity: Hashable {
     
-    public static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (
+        lhs: Self,
+        rhs: Self
+    ) -> Bool {
         return lhs.type == rhs.type
     }
     

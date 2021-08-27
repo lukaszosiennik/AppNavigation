@@ -8,7 +8,10 @@ public struct CoordinatorTabBarControllerParams {
     let showingType: CoordinatorTabBarControllerShowingType
     let rootChildCoordinators: [Coordinator]
     
-    public init(showingType: CoordinatorTabBarControllerShowingType, rootChildCoordinators: [Coordinator]) {
+    public init(
+        showingType: CoordinatorTabBarControllerShowingType,
+        rootChildCoordinators: [Coordinator]
+    ) {
         self.showingType = showingType
         self.rootChildCoordinators = rootChildCoordinators
     }

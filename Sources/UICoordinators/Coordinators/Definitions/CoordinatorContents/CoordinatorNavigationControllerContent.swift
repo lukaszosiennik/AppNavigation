@@ -31,7 +31,11 @@ final class CoordinatorNavigationControllerContent: CoordinatorBasicContentInter
         case .undefined, .root:
             break
         case .present:
-            parentViewController.present(navigationController, animated: true, completion: nil)
+            parentViewController.present(
+                navigationController,
+                animated: true,
+                completion: nil
+            )
         }
     }
     
@@ -40,7 +44,10 @@ final class CoordinatorNavigationControllerContent: CoordinatorBasicContentInter
         case .undefined, .root:
             break
         case .present:
-            navigationController.dismiss(animated: true, completion: nil)
+            navigationController.dismiss(
+                animated: true,
+                completion: nil
+            )
         }
     }
 }

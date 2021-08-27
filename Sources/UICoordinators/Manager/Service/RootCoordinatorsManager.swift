@@ -92,7 +92,9 @@ extension RootCoordinatorsManager: CoordinatorWindowContentDelegate {
     public func switchWindowActionInvoked(on windowID: UUWindowID) {
         // TODO: this code should be enabled only for DEBUG builds
 //        #if DEBUG
-        guard let windowType = rootCoordinatorsSet.first(where: { $0.entity.windowID == windowID })?.entity.windowType else {
+        guard let windowType = rootCoordinatorsSet.first(where: {
+            $0.entity.windowID == windowID
+        })?.entity.windowType else {
             return
         }
         

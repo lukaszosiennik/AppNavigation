@@ -19,7 +19,11 @@ final class CoordinatorWindowContent: CoordinatorContentInterface {
     
     private let showingType: CoordinatorWindowShowingType
     
-    init(window: CommonWindowAlias, showingType: CoordinatorWindowShowingType, rootViewController: UIViewController) {
+    init(
+        window: CommonWindowAlias,
+        showingType: CoordinatorWindowShowingType,
+        rootViewController: UIViewController
+    ) {
         self.type = .window
         self.window = window
         self.window.rootViewController = rootViewController

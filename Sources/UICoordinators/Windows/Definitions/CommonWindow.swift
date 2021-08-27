@@ -30,7 +30,10 @@ open class CommonWindow: CommonWindowAlias {
         addGestureRecognizer(twoFingerDoubleTapGesture)
     }
     
-    public override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    public override func motionEnded(
+        _ motion: UIEvent.EventSubtype,
+        with event: UIEvent?
+    ) {
         if motion == .motionShake {
             delegate?.switchWindowActionInvoked(on: windowID)
         }

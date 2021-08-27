@@ -51,7 +51,9 @@ public class Coordinator {
     public func hide() {
         content.hide()
         
-        parentCoordinator?.childCoordinators.removeAll(where: { $0 === self })
+        parentCoordinator?.childCoordinators.removeAll(where: {
+            $0 === self
+        })
     }
     
     func hide(withContent type: CoordinatorContentType) {}
@@ -63,7 +65,7 @@ public class Coordinator {
         case .tabBarController(let params):
             bindRootChildren(params.rootChildCoordinators)
         case .navigationController(let params):
-            bindRootChild(Coordinator(
+            bindRootChild(.init(
                 type: .viewController(
                     params: .init(
                         showingType: .root,
@@ -82,7 +84,9 @@ public class Coordinator {
     
     private func bindRootChildren(_ coordinators: [Coordinator]) {
         childCoordinators.append(contentsOf: coordinators)
-        coordinators.forEach { $0.parentCoordinator = self }
+        coordinators.forEach {
+            $0.parentCoordinator = self
+        }
     }
 }
 

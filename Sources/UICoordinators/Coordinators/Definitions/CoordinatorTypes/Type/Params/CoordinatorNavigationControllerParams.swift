@@ -10,7 +10,10 @@ public struct CoordinatorNavigationControllerParams {
     let showingType: CoordinatorNavigationControllerShowingType
     let rootViewController: UIViewController
     
-    public init(showingType: CoordinatorNavigationControllerShowingType, rootViewController: UIViewController) {
+    public init(
+        showingType: CoordinatorNavigationControllerShowingType,
+        rootViewController: UIViewController
+    ) {
         self.showingType = showingType
         self.rootViewController = rootViewController
     }

@@ -5,7 +5,10 @@
 
 extension RootCoordinator: Hashable {
     
-    public static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (
+        lhs: Self,
+        rhs: Self
+    ) -> Bool {
         return lhs.entity == rhs.entity
     }
     

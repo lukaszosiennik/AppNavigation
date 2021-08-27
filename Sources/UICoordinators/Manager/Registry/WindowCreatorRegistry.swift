@@ -39,7 +39,9 @@ public final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowT
 extension WindowCreatorRegistry {
     
     func windowCreator(for windowType: WindowType<DevRootWindowType>) throws -> WindowCreator<DevRootWindowType> {
-        guard let creator = windowCreatorsSet.first(where: { $0.entity.type == windowType }) else {
+        guard let creator = windowCreatorsSet.first(where: {
+            $0.entity.type == windowType
+        }) else {
             throw WindowCreatorRegistryError.notRegisteredWindowType
         }
         
