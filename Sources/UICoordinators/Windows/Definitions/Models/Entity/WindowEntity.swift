@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct WindowEntity<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
+public struct WindowEntity<DevRootWindowType> where
+    DevRootWindowType: DevRootWindowTypeInterface {
     
     public let type: WindowType<DevRootWindowType>
     

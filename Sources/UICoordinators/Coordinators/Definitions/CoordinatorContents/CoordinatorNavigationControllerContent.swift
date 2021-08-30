@@ -18,7 +18,9 @@ final class CoordinatorNavigationControllerContent: CoordinatorBasicContentInter
     private let showingType: CoordinatorNavigationControllerShowingType
     
     init(params: CoordinatorNavigationControllerParams) {
-        self.navigationController = UINavigationController(rootViewController: params.rootViewController)
+        self.navigationController = .init(
+            rootViewController: params.rootViewController
+        )
         self.showingType = params.showingType
     }
     

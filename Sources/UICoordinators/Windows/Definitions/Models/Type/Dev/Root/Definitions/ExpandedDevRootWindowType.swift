@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum ExpandedDevRootWindowType<BranchWindowType>: DevRootWindowTypeInterface where BranchWindowType: DevBranchWindowTypeInterface {
+public enum ExpandedDevRootWindowType<BranchWindowType>: DevRootWindowTypeInterface where
+    BranchWindowType: DevBranchWindowTypeInterface {
     
     case primary
     case secondary(BranchWindowType)

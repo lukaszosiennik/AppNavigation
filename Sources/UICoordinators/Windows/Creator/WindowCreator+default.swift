@@ -5,5 +5,6 @@
 
 extension WindowCreator {
     
-    static func `default`<DevRootWindowType>(for windowType: WindowType<DevRootWindowType>) where DevRootWindowType: DevRootWindowTypeInterface {}
+    static func `default`<DevRootWindowType>(for windowType: WindowType<DevRootWindowType>) where
+        DevRootWindowType: DevRootWindowTypeInterface {}
 }

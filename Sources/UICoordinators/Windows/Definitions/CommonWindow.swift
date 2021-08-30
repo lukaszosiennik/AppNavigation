@@ -26,7 +26,10 @@ open class CommonWindow: CommonWindowAlias {
         let twoFingerDoubleTapGesture = UITapGestureRecognizer()
         twoFingerDoubleTapGesture.numberOfTapsRequired = 2
         twoFingerDoubleTapGesture.numberOfTouchesRequired = 2
-        twoFingerDoubleTapGesture.addTarget(self, action: #selector(gestureHandler))
+        twoFingerDoubleTapGesture.addTarget(
+            self,
+            action: #selector(gestureHandler)
+        )
         addGestureRecognizer(twoFingerDoubleTapGesture)
     }
     

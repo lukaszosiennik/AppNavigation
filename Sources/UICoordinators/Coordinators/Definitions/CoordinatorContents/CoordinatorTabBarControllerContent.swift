@@ -21,7 +21,7 @@ final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface
         showingType: CoordinatorTabBarControllerShowingType,
         viewControllers: [UIViewController]
     ) {
-        self.tabBarController = UITabBarController()
+        self.tabBarController = .init()
         self.tabBarController.viewControllers = viewControllers
         self.showingType = showingType
     }

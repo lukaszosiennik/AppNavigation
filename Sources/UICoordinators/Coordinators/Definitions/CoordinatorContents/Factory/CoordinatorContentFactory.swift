@@ -21,9 +21,13 @@ final class CoordinatorContentFactory {
                 }
             )
         case .navigationController(let params):
-            return CoordinatorNavigationControllerContent(params: params)
+            return CoordinatorNavigationControllerContent(
+                params: params
+            )
         case .viewController(let params):
-            return CoordinatorViewControllerContent(params: params)
+            return CoordinatorViewControllerContent(
+                params: params
+            )
         }
     }
 }

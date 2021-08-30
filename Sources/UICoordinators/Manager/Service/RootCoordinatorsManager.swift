@@ -3,7 +3,8 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public final class RootCoordinatorsManager<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
+public final class RootCoordinatorsManager<DevRootWindowType> where
+    DevRootWindowType: DevRootWindowTypeInterface {
     
     public let windowCreatorRegistry = WindowCreatorRegistry<DevRootWindowType>()
     
@@ -72,7 +73,9 @@ public final class RootCoordinatorsManager<DevRootWindowType> where DevRootWindo
 extension RootCoordinatorsManager {
         
     func rootCoordinator(for windowType: WindowType<DevRootWindowType>) throws -> RootCoordinator<DevRootWindowType> {
-        guard let coordinator = rootCoordinatorsSet.first(where: { $0.entity.windowType == windowType }) else {
+        guard let coordinator = rootCoordinatorsSet.first(where: {
+            $0.entity.windowType == windowType
+        }) else {
             throw RootCoordinatorsManagerError.notLoadedWindowType
         }
         

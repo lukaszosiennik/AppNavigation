@@ -5,15 +5,21 @@
 
 extension WindowCreator.Window {
     
-    static func `default`<DevRootWindowType>(for windowType: WindowType<DevRootWindowType>) -> Create where DevRootWindowType: DevRootWindowTypeInterface {
+    static func `default`<DevRootWindowType>(for windowType: WindowType<DevRootWindowType>) -> Create where
+        DevRootWindowType: DevRootWindowTypeInterface
+    {
         switch windowType {
         case .app:
             return { windowID in
-                return AppWindow(windowID: windowID)
+                return AppWindow(
+                    windowID: windowID
+                )
             }
         case .dev:
             return { windowID in
-                return DevWindow(windowID: windowID)
+                return DevWindow(
+                    windowID: windowID
+                )
             }
         }
     }

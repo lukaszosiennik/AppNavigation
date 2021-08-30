@@ -3,9 +3,14 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public final class WindowCreatorRegistry<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
+public final class WindowCreatorRegistry<DevRootWindowType> where
+    DevRootWindowType: DevRootWindowTypeInterface {
     
-    private var windowCreatorsSet = Set<WindowCreator<DevRootWindowType>>()
+    private var windowCreatorsSet: Set<
+        WindowCreator<
+            DevRootWindowType
+        >
+    > = .init()
     
     public func register(windowCreator: WindowCreator<DevRootWindowType>) throws {
         guard !isRegistered(windowType: windowCreator.entity.type) else {

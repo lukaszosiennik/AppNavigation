@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum WindowType<DevRootWindowType>: WindowTypeInterface where DevRootWindowType: DevRootWindowTypeInterface {
+public enum WindowType<DevRootWindowType>: WindowTypeInterface where
+    DevRootWindowType: DevRootWindowTypeInterface {
     
     case app
     case dev(DevRootWindowType)

@@ -5,4 +5,6 @@
 
 import UIKit
 
-public typealias CommonWindowAlias = UIWindow & CommonWindowInterface
+public typealias CommonWindowAlias =
+    UIWindow &
+    CommonWindowInterface
