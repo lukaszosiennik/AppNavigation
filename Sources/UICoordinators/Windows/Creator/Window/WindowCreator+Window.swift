@@ -7,6 +7,7 @@ extension WindowCreator {
     
     public enum Window {
         
-        public typealias Create = (_ windowID: UUWindowID) -> CommonWindowAlias
+        public typealias Create =
+            (_ windowID: UUWindowID) -> CommonWindowAlias
     }
 }

@@ -3,7 +3,10 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public protocol DevRootWindowTypeInterface: DevWindowTypeInterface {
+public protocol DevRootWindowTypeInterface:
+    DevWindowTypeInterface {
     
-    static var primary: Self { get }
+    static var primary: Self {
+        get
+    }
 }

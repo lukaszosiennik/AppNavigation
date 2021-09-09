@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-extension RootCoordinatorEntity: Hashable {
+extension RootCoordinatorEntity:
+    Hashable {
     
     public static func == (
         lhs: Self,
@@ -12,7 +13,11 @@ extension RootCoordinatorEntity: Hashable {
         return lhs.windowType == rhs.windowType
     }
     
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(windowType)
+    public func hash(
+        into hasher: inout Hasher
+    ) {
+        hasher.combine(
+            windowType
+        )
     }
 }

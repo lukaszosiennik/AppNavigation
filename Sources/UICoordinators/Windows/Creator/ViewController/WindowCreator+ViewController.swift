@@ -9,6 +9,7 @@ extension WindowCreator {
     
     public enum ViewController {
         
-        public typealias Create = () -> UIViewController
+        public typealias Create =
+            () -> UIViewController
     }
 }

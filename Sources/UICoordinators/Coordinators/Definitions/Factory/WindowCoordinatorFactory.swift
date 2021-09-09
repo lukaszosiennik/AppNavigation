@@ -5,10 +5,16 @@
 
 final class WindowCoordinatorFactory {
     
-    static func create<DevRootWindowType>(
+    static func create<
+        DevRootWindowType
+    >(
         showingType: CoordinatorWindowShowingType,
-        windowCreator: WindowCreator<DevRootWindowType>
-    ) -> Coordinator where DevRootWindowType: DevRootWindowTypeInterface {
+        windowCreator: WindowCreator<
+            DevRootWindowType
+        >
+    ) -> Coordinator where
+        DevRootWindowType
+            : DevRootWindowTypeInterface {
         let rootChildCoordinator: Coordinator = .init(
             type: .viewController(
                 params: .init(

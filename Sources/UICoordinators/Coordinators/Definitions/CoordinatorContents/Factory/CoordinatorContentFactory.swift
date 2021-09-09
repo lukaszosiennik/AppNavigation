@@ -5,7 +5,9 @@
 
 final class CoordinatorContentFactory {
     
-    static func create(for coordinatorType: CoordinatorType) -> CoordinatorContentInterface {
+    static func create(
+        for coordinatorType: CoordinatorType
+    ) -> CoordinatorContentInterface {
         switch coordinatorType {
         case .window(let params):
             return CoordinatorWindowContent(

@@ -24,10 +24,16 @@ public class Coordinator {
         return content.viewController
     }
     
-    public init(type: CoordinatorType) {
-        self.content = CoordinatorContentFactory.create(for: type)
+    public init(
+        type: CoordinatorType
+    ) {
+        self.content = CoordinatorContentFactory.create(
+            for: type
+        )
         
-        bindRootChildrenIfAny(for: type)
+        bindRootChildrenIfAny(
+            for: type
+        )
     }
     
     public func display() {
@@ -35,17 +41,25 @@ public class Coordinator {
             return
         }
         
-        content.display(on: .temporary)
+        content.display(
+            on: .temporary
+        )
     }
     
-    public func displayChild(_ coordinator: Coordinator) {
+    public func displayChild(
+        _ coordinator: Coordinator
+    ) {
         if case .window = coordinator.content.type {
             return
         }
         
-        bindRootChild(coordinator)
+        bindRootChild(
+            coordinator
+        )
         
-        coordinator.content.display(on: viewController)
+        coordinator.content.display(
+            on: viewController
+        )
     }
     
     public func hide() {
@@ -56,14 +70,22 @@ public class Coordinator {
         })
     }
     
-    func hide(withContent type: CoordinatorContentType) {}
+    func hide(
+        withContent type: CoordinatorContentType
+    ) {}
     
-    private func bindRootChildrenIfAny(for type: CoordinatorType) {
+    private func bindRootChildrenIfAny(
+        for type: CoordinatorType
+    ) {
         switch type {
         case .window(let params):
-            bindRootChild(params.rootChildCoordinator)
+            bindRootChild(
+                params.rootChildCoordinator
+            )
         case .tabBarController(let params):
-            bindRootChildren(params.rootChildCoordinators)
+            bindRootChildren(
+                params.rootChildCoordinators
+            )
         case .navigationController(let params):
             bindRootChild(.init(
                 type: .viewController(
@@ -78,19 +100,28 @@ public class Coordinator {
         }
     }
     
-    private func bindRootChild(_ coordinator: Coordinator) {
-        bindRootChildren([coordinator])
+    private func bindRootChild(
+        _ coordinator: Coordinator
+    ) {
+        bindRootChildren(
+            [coordinator]
+        )
     }
     
-    private func bindRootChildren(_ coordinators: [Coordinator]) {
-        childCoordinators.append(contentsOf: coordinators)
+    private func bindRootChildren(
+        _ coordinators: [Coordinator]
+    ) {
+        childCoordinators.append(
+            contentsOf: coordinators
+        )
         coordinators.forEach {
             $0.parentCoordinator = self
         }
     }
 }
 
-private final class TemporaryViewController: UIViewController {}
+private final class TemporaryViewController:
+    UIViewController {}
 
 private extension UIViewController {
     

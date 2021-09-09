@@ -5,9 +5,18 @@
 
 extension RootCoordinatorFactory {
     
-    public static func create<DevRootWindowType>(createViewController: @autoclosure @escaping WindowCreator<DevRootWindowType>.ViewController.Create) -> RootCoordinator<DevRootWindowType> where
-        DevRootWindowType: DevRootWindowTypeInterface
-    {
+    public static func create<
+        DevRootWindowType
+    >(
+        createViewController: @autoclosure @escaping WindowCreator<
+            DevRootWindowType
+        >.ViewController.Create
+    ) -> RootCoordinator<
+        DevRootWindowType
+    >
+    where
+        DevRootWindowType
+            : DevRootWindowTypeInterface {
         return create(
             windowCreator: .init(
                 entity: .init(
@@ -18,12 +27,21 @@ extension RootCoordinatorFactory {
         )
     }
     
-    public static func create<DevRootWindowType>(
-        createWindow: @escaping WindowCreator<DevRootWindowType>.Window.Create,
-        createViewController: @autoclosure @escaping WindowCreator<DevRootWindowType>.ViewController.Create
-    ) -> RootCoordinator<DevRootWindowType> where
-        DevRootWindowType: DevRootWindowTypeInterface
-    {
+    public static func create<
+        DevRootWindowType
+    >(
+        createWindow: @escaping WindowCreator<
+            DevRootWindowType
+        >.Window.Create,
+        createViewController: @autoclosure @escaping WindowCreator<
+            DevRootWindowType
+        >.ViewController.Create
+    ) -> RootCoordinator<
+        DevRootWindowType
+    >
+    where
+        DevRootWindowType
+            : DevRootWindowTypeInterface {
         return create(
             windowCreator: .init(
                 entity: .init(

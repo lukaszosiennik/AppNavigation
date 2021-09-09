@@ -3,9 +3,14 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-extension CoordinatorWindowContent: CommonWindowDelegate {
+extension CoordinatorWindowContent:
+    CommonWindowDelegate {
     
-    func switchWindowActionInvoked(on windowID: UUWindowID) {
-        delegate?.switchWindowActionInvoked(on: windowID)
+    func switchWindowActionInvoked(
+        on windowID: UUWindowID
+    ) {
+        delegate?.switchWindowActionInvoked(
+            on: windowID
+        )
     }
 }

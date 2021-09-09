@@ -11,7 +11,9 @@ protocol CoordinatorContentInterface {
     
     var viewController: UIViewController { get }
     
-    func display(on parentViewController: UIViewController)
+    func display(
+        on parentViewController: UIViewController
+    )
     
     func hide()
 }

@@ -3,14 +3,24 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-struct RootCoordinatorEntity<DevRootWindowType> where
-    DevRootWindowType: DevRootWindowTypeInterface {
+struct RootCoordinatorEntity<
+    DevRootWindowType
+>
+where
+    DevRootWindowType
+        : DevRootWindowTypeInterface {
     
-    let windowType: WindowType<DevRootWindowType>
+    let windowType: WindowType<
+        DevRootWindowType
+    >
     
     let windowID: UUWindowID
     
-    init(windowEntity: WindowEntity<DevRootWindowType>) {
+    init(
+        windowEntity: WindowEntity<
+            DevRootWindowType
+        >
+    ) {
         self.windowType = windowEntity.type
         self.windowID = windowEntity.id
     }

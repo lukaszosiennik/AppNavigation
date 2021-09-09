@@ -5,7 +5,8 @@
 
 import UIKit
 
-final class CoordinatorWindowContent: CoordinatorContentInterface {
+final class CoordinatorWindowContent:
+    CoordinatorContentInterface {
     
     weak var delegate: CoordinatorWindowContentDelegate?
     
@@ -33,10 +34,14 @@ final class CoordinatorWindowContent: CoordinatorContentInterface {
     }
     
     private func setup() {
-        window.setup(delegate: self)
+        window.setup(
+            delegate: self
+        )
     }
     
-    func display(on parentViewController: UIViewController) {
+    func display(
+        on parentViewController: UIViewController
+    ) {
         switch showingType {
         case .undefined:
             break

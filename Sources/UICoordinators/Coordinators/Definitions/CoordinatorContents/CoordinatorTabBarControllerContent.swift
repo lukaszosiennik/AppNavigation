@@ -5,7 +5,8 @@
 
 import UIKit
 
-final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface {
+final class CoordinatorTabBarControllerContent:
+    CoordinatorBasicContentInterface {
     
     let type: CoordinatorContentType = .tabBarController
     
@@ -26,7 +27,9 @@ final class CoordinatorTabBarControllerContent: CoordinatorBasicContentInterface
         self.showingType = showingType
     }
     
-    func display(on parentViewController: UIViewController) {
+    func display(
+        on parentViewController: UIViewController
+    ) {
         guard !parentViewController.isTemporary else {
             return
         }

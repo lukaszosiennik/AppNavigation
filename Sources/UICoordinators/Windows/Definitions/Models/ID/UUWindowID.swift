@@ -5,4 +5,5 @@
 
 import Foundation
 
-public typealias UUWindowID = UUID
+public typealias UUWindowID =
+    UUID

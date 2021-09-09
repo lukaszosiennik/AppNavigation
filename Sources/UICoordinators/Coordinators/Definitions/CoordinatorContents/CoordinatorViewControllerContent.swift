@@ -5,7 +5,8 @@
 
 import UIKit
 
-final class CoordinatorViewControllerContent: CoordinatorBasicContentInterface {
+final class CoordinatorViewControllerContent:
+    CoordinatorBasicContentInterface {
     
     let type: CoordinatorContentType = .viewController
     
@@ -13,12 +14,16 @@ final class CoordinatorViewControllerContent: CoordinatorBasicContentInterface {
     
     private let showingType: CoordinatorViewControllerShowingType
     
-    init(params: CoordinatorViewControllerParams) {
+    init(
+        params: CoordinatorViewControllerParams
+    ) {
         self.viewController = params.viewController
         self.showingType = params.showingType
     }
     
-    func display(on parentViewController: UIViewController) {
+    func display(
+        on parentViewController: UIViewController
+    ) {
         guard !parentViewController.isTemporary else {
             return
         }
@@ -50,7 +55,9 @@ final class CoordinatorViewControllerContent: CoordinatorBasicContentInterface {
                 completion: nil
             )
         case .push:
-            viewController.navigationController?.popViewController(animated: true)
+            viewController.navigationController?.popViewController(
+                animated: true
+            )
         }
     }
 }

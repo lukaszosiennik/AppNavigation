@@ -3,15 +3,24 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct WindowCreator<DevRootWindowType> where DevRootWindowType: DevRootWindowTypeInterface {
+public struct WindowCreator<
+    DevRootWindowType
+>
+where
+    DevRootWindowType
+        : DevRootWindowTypeInterface {
     
-    let entity: WindowEntity<DevRootWindowType>
+    let entity: WindowEntity<
+        DevRootWindowType
+    >
     
     let createWindow: Window.Create
     let createViewController: ViewController.Create
     
     public init(
-        entity: WindowEntity<DevRootWindowType>,
+        entity: WindowEntity<
+            DevRootWindowType
+        >,
         createViewController: @autoclosure @escaping ViewController.Create
     ) {
         self.init(
@@ -24,7 +33,9 @@ public struct WindowCreator<DevRootWindowType> where DevRootWindowType: DevRootW
     }
     
     public init(
-        entity: WindowEntity<DevRootWindowType>,
+        entity: WindowEntity<
+            DevRootWindowType
+        >,
         createWindow: @escaping Window.Create,
         createViewController: @autoclosure @escaping ViewController.Create
     ) {

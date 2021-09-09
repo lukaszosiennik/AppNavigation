@@ -5,13 +5,21 @@
 
 import UIKit
 
-public protocol CommonWindowInterface: AnyObject {
+public protocol CommonWindowInterface:
+    AnyObject {
     
-    var delegate: CommonWindowDelegate? { get set }
+    var delegate: CommonWindowDelegate? {
+        get
+        set
+    }
     
-    var windowID: UUWindowID { get }
+    var windowID: UUWindowID {
+        get
+    }
     
-    func setup(delegate: CommonWindowDelegate?)
+    func setup(
+        delegate: CommonWindowDelegate?
+    )
 }
 
 extension CommonWindowInterface {

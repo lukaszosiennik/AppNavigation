@@ -5,7 +5,8 @@
 
 import UIKit
 
-final class CoordinatorNavigationControllerContent: CoordinatorBasicContentInterface {
+final class CoordinatorNavigationControllerContent:
+    CoordinatorBasicContentInterface {
     
     let type: CoordinatorContentType = .navigationController
     
@@ -17,14 +18,18 @@ final class CoordinatorNavigationControllerContent: CoordinatorBasicContentInter
     
     private let showingType: CoordinatorNavigationControllerShowingType
     
-    init(params: CoordinatorNavigationControllerParams) {
+    init(
+        params: CoordinatorNavigationControllerParams
+    ) {
         self.navigationController = .init(
             rootViewController: params.rootViewController
         )
         self.showingType = params.showingType
     }
     
-    func display(on parentViewController: UIViewController) {
+    func display(
+        on parentViewController: UIViewController
+    ) {
         guard !parentViewController.isTemporary else {
             return
         }

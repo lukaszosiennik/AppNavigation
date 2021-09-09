@@ -5,7 +5,8 @@
 
 import UIKit
 
-public final class TemplateCoordinator: Coordinator {
+public final class TemplateCoordinator:
+    Coordinator {
     
     public override init(
         type: CoordinatorType = .navigationController(
@@ -15,6 +16,8 @@ public final class TemplateCoordinator: Coordinator {
             )
         )
     ) {
-        super.init(type: type)
+        super.init(
+            type: type
+        )
     }
 }

@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum WindowCreatorRegistryError: Error {
+public enum WindowCreatorRegistryError:
+    Error {
     
     case windowTypeAlreadyRegistered
     case cannotUnregisterNotRegisteredWindowType

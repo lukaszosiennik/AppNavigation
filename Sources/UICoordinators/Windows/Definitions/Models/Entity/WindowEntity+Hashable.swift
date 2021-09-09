@@ -3,7 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-extension WindowEntity: Hashable {
+extension WindowEntity:
+    Hashable {
     
     public static func == (
         lhs: Self,
@@ -12,7 +13,11 @@ extension WindowEntity: Hashable {
         return lhs.type == rhs.type
     }
     
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(type)
+    public func hash(
+        into hasher: inout Hasher
+    ) {
+        hasher.combine(
+            type
+        )
     }
 }

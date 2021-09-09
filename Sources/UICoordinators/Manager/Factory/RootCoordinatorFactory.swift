@@ -5,9 +5,17 @@
 
 final class RootCoordinatorFactory {
     
-    static func create<DevRootWindowType>(windowCreator: WindowCreator<DevRootWindowType>) -> RootCoordinator<DevRootWindowType> where
-        DevRootWindowType: DevRootWindowTypeInterface
-    {
+    static func create<
+        DevRootWindowType
+    >(
+        windowCreator: WindowCreator<
+            DevRootWindowType
+        >
+    ) -> RootCoordinator<
+        DevRootWindowType
+    > where
+        DevRootWindowType
+            : DevRootWindowTypeInterface {
         return .init(
             entity: .init(
                 windowEntity: windowCreator.entity
