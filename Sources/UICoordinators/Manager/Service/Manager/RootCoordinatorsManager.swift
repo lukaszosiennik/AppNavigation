@@ -10,6 +10,8 @@ where
     DevRootWindowType
         : DevRootWindowTypeInterface {
     
+    public typealias DevRootWindowType = DevRootWindowType
+    
     public let windowCreatorRegistry: WindowCreatorRegistry<
         DevRootWindowType
     > = .init()
