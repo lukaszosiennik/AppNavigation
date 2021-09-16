@@ -4,13 +4,10 @@
 //
 
 public final class RootCoordinatorsManager<
-    DevRootWindowType
->
-where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
-    
-    public typealias DevRootWindowType = DevRootWindowType
+    DevRootWindowType:
+        DevRootWindowTypeInterface
+>:
+    RootCoordinatorsManagerInterface {
     
     public let windowCreatorRegistry: WindowCreatorRegistry<
         DevRootWindowType
