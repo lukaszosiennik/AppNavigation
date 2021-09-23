@@ -90,14 +90,14 @@ public final class RootAppNavigationNodesManager<
             throw RootAppNavigationNodesManagerError.cannotUnloadNotRegisteredWindowPurpose
         }
         
-        guard let coordinator = try? rootAppNavigationNode(
+        guard let navigationNode = try? rootAppNavigationNode(
             for: windowPurpose
         ) else {
             throw RootAppNavigationNodesManagerError.cannotUnloadNotLoadedWindowPurpose
         }
         
         rootAppNavigationNodesSet.remove(
-            coordinator
+            navigationNode
         )
     }
     
@@ -139,11 +139,11 @@ extension RootAppNavigationNodesManager {
 extension RootAppNavigationNodesManager {
     
     private func appNavigationNodeContentWindow(
-        from rootCoordinator: RootAppNavigationNode<
+        from rootNavigationNode: RootAppNavigationNode<
             DevRootWindowPurpose
         >?
     ) -> AppNavigationNodeContentWindow? {
-        return rootCoordinator?.navigationNode.content as? AppNavigationNodeContentWindow
+        return rootNavigationNode?.navigationNode.content as? AppNavigationNodeContentWindow
     }
 }
 
