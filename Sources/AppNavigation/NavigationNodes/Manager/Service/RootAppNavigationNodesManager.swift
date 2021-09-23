@@ -4,9 +4,9 @@
 //
 
 public final class RootAppNavigationNodesManager<
-                                                DevRootWindowPurpose:
+    DevRootWindowPurpose:
         DevRootWindowPurposeInterface
-                                                >:
+>:
     RootAppNavigationNodesManagerInterface {
     
     public let windowCreatorRegistry: WindowCreatorRegistry<
