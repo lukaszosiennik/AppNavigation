@@ -6,7 +6,7 @@
 import UIKit
 
 final class AppNavigationNodeContentWindow:
-    AppNavigationNodeContentInterface {
+    AppNavigationNodeContentWindowInterface {
     
     weak var delegate: AppNavigationNodeContentWindowDelegate?
     

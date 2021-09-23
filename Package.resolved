@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "commons",
+        "repositoryURL": "git@bitbucket.org:openplainness/commons.git",
+        "state": {
+          "branch": "develop",
+          "revision": "1f12c515ffe3650f18d8750e26643890eb5529cf",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

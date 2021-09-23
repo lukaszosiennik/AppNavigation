@@ -11,7 +11,7 @@ public class AppNavigationNode {
         if parentNavigationNode == nil {
             return .root
         } else {
-            return .leaf
+            return .subtree
         }
     }
     
