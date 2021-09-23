@@ -3,31 +3,31 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class CoordinatorContentFactory {
-    
+final class AppNavigationNodeContentFactory {
+
     static func create(
-        for coordinatorType: CoordinatorType
-    ) -> CoordinatorContentInterface {
-        switch coordinatorType {
+        for navigationNodeType: AppNavigationNodeType
+    ) -> AppNavigationNodeContentInterface {
+        switch navigationNodeType {
         case .window(let params):
-            return CoordinatorWindowContent(
+            return AppNavigationNodeContentWindow(
                 window: params.window,
                 showingType: params.showingType,
-                rootViewController: params.rootChildCoordinator.content.viewController
+                rootViewController: params.rootChildNavigationNode.content.viewController
             )
         case .tabBarController(let params):
-            return CoordinatorTabBarControllerContent(
+            return AppNavigationNodeContentTabBarController(
                 showingType: params.showingType,
-                viewControllers: params.rootChildCoordinators.map {
+                viewControllers: params.rootChildNavigationNodes.map {
                     $0.content.viewController
                 }
             )
         case .navigationController(let params):
-            return CoordinatorNavigationControllerContent(
+            return AppNavigationNodeContentNavigationController(
                 params: params
             )
         case .viewController(let params):
-            return CoordinatorViewControllerContent(
+            return AppNavigationNodeContentViewController(
                 params: params
             )
         }

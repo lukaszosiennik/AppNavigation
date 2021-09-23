@@ -5,13 +5,13 @@
 
 import UIKit
 
-public struct CoordinatorViewControllerParams {
+public struct AppNavigationNodeViewControllerParams {
     
-    let showingType: CoordinatorViewControllerShowingType
+    let showingType: AppNavigationNodeViewControllerShowingType
     let viewController: UIViewController
     
     public init(
-        showingType: CoordinatorViewControllerShowingType,
+        showingType: AppNavigationNodeViewControllerShowingType,
         viewController: UIViewController
     ) {
         self.showingType = showingType

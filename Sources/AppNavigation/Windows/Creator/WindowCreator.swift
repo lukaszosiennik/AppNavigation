@@ -4,14 +4,14 @@
 //
 
 public struct WindowCreator<
-    DevRootWindowType
+    DevRootWindowPurpose
 >
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
     let entity: WindowEntity<
-        DevRootWindowType
+        DevRootWindowPurpose
     >
     
     let createWindow: Window.Create
@@ -19,14 +19,14 @@ where
     
     public init(
         entity: WindowEntity<
-            DevRootWindowType
+            DevRootWindowPurpose
         >,
         createViewController: @autoclosure @escaping ViewController.Create
     ) {
         self.init(
             entity: entity,
             createWindow: Window.default(
-                for: entity.type
+                for: entity.purpose
             ),
             createViewController: createViewController()
         )
@@ -34,7 +34,7 @@ where
     
     public init(
         entity: WindowEntity<
-            DevRootWindowType
+            DevRootWindowPurpose
         >,
         createWindow: @escaping Window.Create,
         createViewController: @autoclosure @escaping ViewController.Create

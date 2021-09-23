@@ -3,10 +3,10 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum CoordinatorType {
-    
-    case window(params: CoordinatorWindowParams)
-    case tabBarController(params: CoordinatorTabBarControllerParams)
-    case navigationController(params: CoordinatorNavigationControllerParams)
-    case viewController(params: CoordinatorViewControllerParams)
+public enum AppNavigationNodeType {
+
+    case window(params: AppNavigationNodeWindowParams)
+    case tabBarController(params: AppNavigationNodeTabBarControllerParams)
+    case navigationController(params: AppNavigationNodeNavigationControllerParams)
+    case viewController(params: AppNavigationNodeViewControllerParams)
 }

@@ -3,18 +3,18 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum GroupedDevBranchWindowType<
-    AppTestWindowType,
-    ThirdPartyTestWindowType
+public enum GroupedDevBranchWindowPurpose<
+    AppTestWindowPurpose,
+    ThirdPartyTestWindowPurpose
 >:
-    GroupedDevBranchWindowTypeInterface,
-    DevBranchWindowTypeInterface
+    GroupedDevBranchWindowPurposeInterface,
+    DevBranchWindowPurposeInterface
 where
-    AppTestWindowType
-        : DevBranchWindowTypeInterface,
-    ThirdPartyTestWindowType
-        : DevBranchWindowTypeInterface {
+    AppTestWindowPurpose
+        : DevBranchWindowPurposeInterface,
+    ThirdPartyTestWindowPurpose
+        : DevBranchWindowPurposeInterface {
     
-    case appTest(AppTestWindowType)
-    case thirdPartyTest(ThirdPartyTestWindowType)
+    case appTest(AppTestWindowPurpose)
+    case thirdPartyTest(ThirdPartyTestWindowPurpose)
 }

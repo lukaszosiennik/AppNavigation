@@ -5,12 +5,12 @@
 
 import UIKit
 
-final class CoordinatorWindowContent:
-    CoordinatorContentInterface {
+final class AppNavigationNodeContentWindow:
+    AppNavigationNodeContentInterface {
     
-    weak var delegate: CoordinatorWindowContentDelegate?
+    weak var delegate: AppNavigationNodeContentWindowDelegate?
     
-    let type: CoordinatorContentType
+    let type: AppNavigationNodeContentType
     
     private let window: CommonWindowAlias
     
@@ -18,11 +18,11 @@ final class CoordinatorWindowContent:
         return window.rootViewController!
     }
     
-    private let showingType: CoordinatorWindowShowingType
+    private let showingType: AppNavigationNodeWindowShowingType
     
     init(
         window: CommonWindowAlias,
-        showingType: CoordinatorWindowShowingType,
+        showingType: AppNavigationNodeWindowShowingType,
         rootViewController: UIViewController
     ) {
         self.type = .window

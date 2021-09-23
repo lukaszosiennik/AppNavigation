@@ -3,15 +3,15 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-struct RootCoordinator<
-    DevRootWindowType
+struct RootAppNavigationNode<
+    DevRootWindowPurpose
 >
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
-    let entity: RootCoordinatorEntity<
-        DevRootWindowType
+    let entity: RootAppNavigationNodeEntity<
+        DevRootWindowPurpose
     >
-    let coordinator: Coordinator
+    let navigationNode: AppNavigationNode
 }

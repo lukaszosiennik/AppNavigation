@@ -3,26 +3,26 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum WindowType<
-    DevRootWindowType
+public enum WindowPurpose<
+    DevRootWindowPurpose
 >:
-    WindowTypeInterface
+    WindowPurposeInterface
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
     case app
-    case dev(DevRootWindowType)
+    case dev(DevRootWindowPurpose)
 }
 
-extension WindowType {
+extension WindowPurpose {
     
     public static var dev: Self {
         return .dev(.primary)
     }
 }
 
-extension WindowType {
+extension WindowPurpose {
     
     public var isApp: Bool {
         switch self {

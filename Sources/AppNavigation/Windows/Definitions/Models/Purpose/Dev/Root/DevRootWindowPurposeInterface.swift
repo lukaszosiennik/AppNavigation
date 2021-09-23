@@ -3,8 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public protocol DevRootWindowTypeInterface:
-    DevWindowTypeInterface {
+public protocol DevRootWindowPurposeInterface:
+    DevWindowPurposeInterface {
     
     static var primary: Self {
         get

@@ -6,13 +6,13 @@
 extension WindowCreator {
     
     static func `default`<
-        DevRootWindowType
+        DevRootWindowPurpose
     >(
-        for windowType: WindowType<
-            DevRootWindowType
+        for windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     )
     where
-        DevRootWindowType
-            : DevRootWindowTypeInterface {}
+        DevRootWindowPurpose
+            : DevRootWindowPurposeInterface {}
 }

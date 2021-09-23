@@ -5,29 +5,29 @@
 
 import UIKit
 
-public class Coordinator {
+public class AppNavigationNode {
 
-    var nodeType: CoordinatorNodeType {
-        if parentCoordinator == nil {
+    var nodeType: AppNavigationNodeLevelType {
+        if parentNavigationNode == nil {
             return .root
         } else {
             return .leaf
         }
     }
     
-    weak var parentCoordinator: Coordinator?
-    var childCoordinators: [Coordinator] = []
+    weak var parentNavigationNode: AppNavigationNode?
+    var childNavigationNodes: [AppNavigationNode] = []
     
-    let content: CoordinatorContentInterface
+    let content: AppNavigationNodeContentInterface
     
     private var viewController: UIViewController {
         return content.viewController
     }
     
     public init(
-        type: CoordinatorType
+        type: AppNavigationNodeType
     ) {
-        self.content = CoordinatorContentFactory.create(
+        self.content = AppNavigationNodeContentFactory.create(
             for: type
         )
         
@@ -47,17 +47,17 @@ public class Coordinator {
     }
     
     public func displayChild(
-        _ coordinator: Coordinator
+        _ navigationNode: AppNavigationNode
     ) {
-        if case .window = coordinator.content.type {
+        if case .window = navigationNode.content.type {
             return
         }
         
         bindRootChild(
-            coordinator
+            navigationNode
         )
         
-        coordinator.content.display(
+        navigationNode.content.display(
             on: viewController
         )
     }
@@ -65,26 +65,26 @@ public class Coordinator {
     public func hide() {
         content.hide()
         
-        parentCoordinator?.childCoordinators.removeAll(where: {
+        parentNavigationNode?.childNavigationNodes.removeAll(where: {
             $0 === self
         })
     }
     
     func hide(
-        withContent type: CoordinatorContentType
+        withContent type: AppNavigationNodeContentType
     ) {}
     
     private func bindRootChildrenIfAny(
-        for type: CoordinatorType
+        for type: AppNavigationNodeType
     ) {
         switch type {
         case .window(let params):
             bindRootChild(
-                params.rootChildCoordinator
+                params.rootChildNavigationNode
             )
         case .tabBarController(let params):
             bindRootChildren(
-                params.rootChildCoordinators
+                params.rootChildNavigationNodes
             )
         case .navigationController(let params):
             bindRootChild(.init(
@@ -101,21 +101,21 @@ public class Coordinator {
     }
     
     private func bindRootChild(
-        _ coordinator: Coordinator
+        _ navigationNode: AppNavigationNode
     ) {
         bindRootChildren(
-            [coordinator]
+            [navigationNode]
         )
     }
     
     private func bindRootChildren(
-        _ coordinators: [Coordinator]
+        _ navigationNodes: [AppNavigationNode]
     ) {
-        childCoordinators.append(
-            contentsOf: coordinators
+        childNavigationNodes.append(
+            contentsOf: navigationNodes
         )
-        coordinators.forEach {
-            $0.parentCoordinator = self
+        navigationNodes.forEach {
+            $0.parentNavigationNode = self
         }
     }
 }

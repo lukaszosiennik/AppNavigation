@@ -6,8 +6,8 @@
 public enum WindowCreatorRegistryError:
     Error {
     
-    case windowTypeAlreadyRegistered
-    case cannotUnregisterNotRegisteredWindowType
+    case windowPurposeAlreadyRegistered
+    case cannotUnregisterNotRegisteredWindowPurpose
     case nothingToUnregister
-    case notRegisteredWindowType
+    case notRegisteredWindowPurpose
 }

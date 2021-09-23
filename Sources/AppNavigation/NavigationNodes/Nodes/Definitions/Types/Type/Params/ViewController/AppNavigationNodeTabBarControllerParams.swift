@@ -3,16 +3,16 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct CoordinatorTabBarControllerParams {
+public struct AppNavigationNodeTabBarControllerParams {
     
-    let showingType: CoordinatorTabBarControllerShowingType
-    let rootChildCoordinators: [Coordinator]
+    let showingType: AppNavigationNodeTabBarControllerShowingType
+    let rootChildNavigationNodes: [AppNavigationNode]
     
     public init(
-        showingType: CoordinatorTabBarControllerShowingType,
-        rootChildCoordinators: [Coordinator]
+        showingType: AppNavigationNodeTabBarControllerShowingType,
+        rootChildNavigationNodes: [AppNavigationNode]
     ) {
         self.showingType = showingType
-        self.rootChildCoordinators = rootChildCoordinators
+        self.rootChildNavigationNodes = rootChildNavigationNodes
     }
 }

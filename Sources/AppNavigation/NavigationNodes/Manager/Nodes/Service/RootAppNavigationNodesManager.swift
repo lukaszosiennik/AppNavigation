@@ -3,164 +3,164 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public final class RootCoordinatorsManager<
-    DevRootWindowType:
-        DevRootWindowTypeInterface
->:
-    RootCoordinatorsManagerInterface {
+public final class RootAppNavigationNodesManager<
+                                                DevRootWindowPurpose:
+        DevRootWindowPurposeInterface
+                                                >:
+    RootAppNavigationNodesManagerInterface {
     
     public let windowCreatorRegistry: WindowCreatorRegistry<
-        DevRootWindowType
+        DevRootWindowPurpose
     > = .init()
     
-    private var rootCoordinatorsSet: Set<
-        RootCoordinator<
-            DevRootWindowType
+    private var rootAppNavigationNodesSet: Set<
+        RootAppNavigationNode<
+            DevRootWindowPurpose
         >
     > = .init()
-    private var keyRootCoordinator: RootCoordinator<
-        DevRootWindowType
+    private var keyRootAppNavigationNode: RootAppNavigationNode<
+        DevRootWindowPurpose
     >?
     
     public init() {}
     
     public func load(
-        _ windowType: WindowType<
-            DevRootWindowType
+        _ windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) throws {
-        guard windowType != keyRootCoordinator?.entity.windowType else {
-            throw RootCoordinatorsManagerError.cannotLoadKeyWindowType
+        guard windowPurpose != keyRootAppNavigationNode?.entity.windowPurpose else {
+            throw RootAppNavigationNodesManagerError.cannotLoadKeyWindow
         }
         
-        if windowType.isDev {
+        if windowPurpose.isDev {
             guard windowCreatorRegistry.isRegistered(
-                    windowType: .app
+                    windowPurpose: .app
             ) else {
-                throw RootCoordinatorsManagerError.cannotLoadDevWindowTypeIfAppWindowTypeIsNotRegistered
+                throw RootAppNavigationNodesManagerError.cannotLoadDevWindowPurposeIfAppWindowPurposeIsNotRegistered
             }
         }
         
-        let currentRootCoordinator: RootCoordinator<
-            DevRootWindowType
+        let currentRootAppNavigationNode: RootAppNavigationNode<
+            DevRootWindowPurpose
         >
-        if let coordinator = try? rootCoordinator(
-            for: windowType
+        if let appNavigationNode = try? rootAppNavigationNode(
+            for: windowPurpose
         ) {
-            currentRootCoordinator = coordinator
+            currentRootAppNavigationNode = appNavigationNode
         } else {
             guard let windowCreator = try? windowCreatorRegistry.windowCreator(
-                for: windowType
+                for: windowPurpose
             ) else {
-                throw RootCoordinatorsManagerError.cannotLoadNotRegisteredWindowType
+                throw RootAppNavigationNodesManagerError.cannotLoadNotRegisteredWindowPurpose
             }
             
-            currentRootCoordinator = RootCoordinatorFactory.create(
+            currentRootAppNavigationNode = RootAppNavigationNodeFactory.create(
                 windowCreator: windowCreator
             )
             
-            rootCoordinatorsSet.insert(
-                currentRootCoordinator
+            rootAppNavigationNodesSet.insert(
+                currentRootAppNavigationNode
             )
         }
         
-        changeKeyRootCoordinator(
-            using: currentRootCoordinator
+        changeKeyRootAppNavigationNode(
+            using: currentRootAppNavigationNode
         )
         
-        currentRootCoordinator.coordinator.display()
+        currentRootAppNavigationNode.navigationNode.display()
     }
     
     public func unload(
-        _ windowType: WindowType<
-            DevRootWindowType
+        _ windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) throws {
-        guard windowType != keyRootCoordinator?.entity.windowType else {
-            throw RootCoordinatorsManagerError.cannotUnloadKeyWindowType
+        guard windowPurpose != keyRootAppNavigationNode?.entity.windowPurpose else {
+            throw RootAppNavigationNodesManagerError.cannotUnloadKeyWindow
         }
         
-        guard !windowType.isApp else {
-            throw RootCoordinatorsManagerError.cannotUnloadAppWindowType
+        guard !windowPurpose.isApp else {
+            throw RootAppNavigationNodesManagerError.cannotUnloadAppWindowPurpose
         }
         
         guard (try? windowCreatorRegistry.windowCreator(
-            for: windowType
+            for: windowPurpose
         )) != nil else {
-            throw RootCoordinatorsManagerError.cannotUnloadNotRegisteredWindowType
+            throw RootAppNavigationNodesManagerError.cannotUnloadNotRegisteredWindowPurpose
         }
         
-        guard let coordinator = try? rootCoordinator(
-            for: windowType
+        guard let coordinator = try? rootAppNavigationNode(
+            for: windowPurpose
         ) else {
-            throw RootCoordinatorsManagerError.cannotUnloadNotLoadedWindowType
+            throw RootAppNavigationNodesManagerError.cannotUnloadNotLoadedWindowPurpose
         }
         
-        rootCoordinatorsSet.remove(
+        rootAppNavigationNodesSet.remove(
             coordinator
         )
     }
     
-    private func changeKeyRootCoordinator(
-        using rootCoordinator: RootCoordinator<
-            DevRootWindowType
+    private func changeKeyRootAppNavigationNode(
+        using rootAppNavigationNode: RootAppNavigationNode<
+            DevRootWindowPurpose
         >
     ) {
-        coordinatorWindowContent(
-            from: keyRootCoordinator
+        appNavigationNodeContentWindow(
+            from: keyRootAppNavigationNode
         )?.delegate = nil
-        coordinatorWindowContent(
-            from: rootCoordinator
+        appNavigationNodeContentWindow(
+            from: rootAppNavigationNode
         )?.delegate = self
         
-        keyRootCoordinator = rootCoordinator
+        keyRootAppNavigationNode = rootAppNavigationNode
     }
 }
 
-extension RootCoordinatorsManager {
+extension RootAppNavigationNodesManager {
         
-    func rootCoordinator(
-        for windowType: WindowType<
-            DevRootWindowType
+    func rootAppNavigationNode(
+        for windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
-    ) throws -> RootCoordinator<
-        DevRootWindowType
+    ) throws -> RootAppNavigationNode<
+        DevRootWindowPurpose
     > {
-        guard let coordinator = rootCoordinatorsSet.first(where: {
-            $0.entity.windowType == windowType
+        guard let appNavigationNode = rootAppNavigationNodesSet.first(where: {
+            $0.entity.windowPurpose == windowPurpose
         }) else {
-            throw RootCoordinatorsManagerError.notLoadedWindowType
+            throw RootAppNavigationNodesManagerError.notLoadedWindowPurpose
         }
         
-        return coordinator
+        return appNavigationNode
     }
 }
 
-extension RootCoordinatorsManager {
+extension RootAppNavigationNodesManager {
     
-    private func coordinatorWindowContent(
-        from rootCoordinator: RootCoordinator<
-            DevRootWindowType
+    private func appNavigationNodeContentWindow(
+        from rootCoordinator: RootAppNavigationNode<
+            DevRootWindowPurpose
         >?
-    ) -> CoordinatorWindowContent? {
-        return rootCoordinator?.coordinator.content as? CoordinatorWindowContent
+    ) -> AppNavigationNodeContentWindow? {
+        return rootCoordinator?.navigationNode.content as? AppNavigationNodeContentWindow
     }
 }
 
-extension RootCoordinatorsManager: CoordinatorWindowContentDelegate {
+extension RootAppNavigationNodesManager: AppNavigationNodeContentWindowDelegate {
     
     public func switchWindowActionInvoked(
         on windowID: UUWindowID
     ) {
         // TODO: this code should be enabled only for DEBUG builds
 //        #if DEBUG
-        guard let windowType = rootCoordinatorsSet.first(where: {
+        guard let windowPurpose = rootAppNavigationNodesSet.first(where: {
             $0.entity.windowID == windowID
-        })?.entity.windowType else {
+        })?.entity.windowPurpose else {
             return
         }
         
-        switch windowType {
+        switch windowPurpose {
         case .app:
             try? load(
                 .dev

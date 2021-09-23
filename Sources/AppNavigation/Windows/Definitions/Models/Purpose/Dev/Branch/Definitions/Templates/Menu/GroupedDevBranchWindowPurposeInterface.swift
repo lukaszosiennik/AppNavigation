@@ -3,16 +3,16 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public protocol GroupedDevBranchWindowTypeInterface {
+public protocol GroupedDevBranchWindowPurposeInterface {
     
-    associatedtype AppTestWindowType
-    associatedtype ThirdPartyTestWindowType
+    associatedtype AppTestWindowPurpose
+    associatedtype ThirdPartyTestWindowPurpose
     
     static func appTest(
-        _ windowType: AppTestWindowType
+        _ windowPurpose: AppTestWindowPurpose
     ) -> Self
     
     static func thirdPartyTest(
-        _ windowType: ThirdPartyTestWindowType
+        _ windowPurpose: ThirdPartyTestWindowPurpose
     ) -> Self
 }

@@ -10,14 +10,14 @@ extension WindowEntity:
         lhs: Self,
         rhs: Self
     ) -> Bool {
-        return lhs.type == rhs.type
+        return lhs.purpose == rhs.purpose
     }
     
     public func hash(
         into hasher: inout Hasher
     ) {
         hasher.combine(
-            type
+            purpose
         )
     }
 }

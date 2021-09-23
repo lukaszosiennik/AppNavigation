@@ -4,24 +4,24 @@
 //
 
 public struct WindowEntity<
-    DevRootWindowType
+    DevRootWindowPurpose
 >
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
-    public let type: WindowType<
-        DevRootWindowType
+    public let purpose: WindowPurpose<
+        DevRootWindowPurpose
     >
     
     public let id: UUWindowID
     
     public init(
-        type: WindowType<
-            DevRootWindowType
+        purpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) {
-        self.type = type
+        self.purpose = purpose
         self.id = .init()
     }
 }

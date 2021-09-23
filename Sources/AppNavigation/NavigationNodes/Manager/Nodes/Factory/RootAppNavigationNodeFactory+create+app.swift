@@ -3,24 +3,24 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-extension RootCoordinatorFactory {
+extension RootAppNavigationNodeFactory {
     
     public static func create<
-        DevRootWindowType
+        DevRootWindowPurpose
     >(
         createViewController: @autoclosure @escaping WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >.ViewController.Create
-    ) -> RootCoordinator<
-        DevRootWindowType
+    ) -> RootAppNavigationNode<
+        DevRootWindowPurpose
     >
     where
-        DevRootWindowType
-            : DevRootWindowTypeInterface {
+        DevRootWindowPurpose
+            : DevRootWindowPurposeInterface {
         return create(
             windowCreator: .init(
                 entity: .init(
-                    type: .app
+                    purpose: .app
                 ),
                 createViewController: createViewController()
             )
@@ -28,24 +28,24 @@ extension RootCoordinatorFactory {
     }
     
     public static func create<
-        DevRootWindowType
+        DevRootWindowPurpose
     >(
         createWindow: @escaping WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >.Window.Create,
         createViewController: @autoclosure @escaping WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >.ViewController.Create
-    ) -> RootCoordinator<
-        DevRootWindowType
+    ) -> RootAppNavigationNode<
+        DevRootWindowPurpose
     >
     where
-        DevRootWindowType
-            : DevRootWindowTypeInterface {
+        DevRootWindowPurpose
+            : DevRootWindowPurposeInterface {
         return create(
             windowCreator: .init(
                 entity: .init(
-                    type: .app
+                    purpose: .app
                 ),
                 createWindow: createWindow,
                 createViewController: createViewController()

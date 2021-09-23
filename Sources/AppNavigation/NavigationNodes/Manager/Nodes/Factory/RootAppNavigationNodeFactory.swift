@@ -3,24 +3,24 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class RootCoordinatorFactory {
+final class RootAppNavigationNodeFactory {
     
     static func create<
-        DevRootWindowType
+        DevRootWindowPurpose
     >(
         windowCreator: WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >
-    ) -> RootCoordinator<
-        DevRootWindowType
+    ) -> RootAppNavigationNode<
+        DevRootWindowPurpose
     > where
-        DevRootWindowType
-            : DevRootWindowTypeInterface {
+        DevRootWindowPurpose
+            : DevRootWindowPurposeInterface {
         return .init(
             entity: .init(
                 windowEntity: windowCreator.entity
             ),
-            coordinator: WindowCoordinatorFactory.create(
+            navigationNode: AppNavigationNodeWindowFactory.create(
                 showingType: .makeVisible,
                 windowCreator: windowCreator
             )

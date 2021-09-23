@@ -5,17 +5,17 @@
 
 import UIKit
 
-final class CoordinatorViewControllerContent:
-    CoordinatorBasicContentInterface {
+final class AppNavigationNodeContentViewController:
+    AppNavigationNodeContentViewControllerInterface {
     
-    let type: CoordinatorContentType = .viewController
+    let type: AppNavigationNodeContentType = .viewController
     
     let viewController: UIViewController
     
-    private let showingType: CoordinatorViewControllerShowingType
+    private let showingType: AppNavigationNodeViewControllerShowingType
     
     init(
-        params: CoordinatorViewControllerParams
+        params: AppNavigationNodeViewControllerParams
     ) {
         self.viewController = params.viewController
         self.showingType = params.showingType

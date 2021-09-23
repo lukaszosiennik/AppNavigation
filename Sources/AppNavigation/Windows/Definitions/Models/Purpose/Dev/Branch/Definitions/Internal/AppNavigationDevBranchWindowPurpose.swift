@@ -3,8 +3,8 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum UICoordinatorsDevBranchWindowType:
-    DevBranchWindowTypeInterface {
+public enum AppNavigationDevBranchWindowPurpose:
+    DevBranchWindowPurposeInterface {
     
     case test
 }

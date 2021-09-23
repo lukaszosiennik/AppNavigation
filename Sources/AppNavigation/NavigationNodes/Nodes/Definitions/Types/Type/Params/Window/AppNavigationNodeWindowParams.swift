@@ -3,19 +3,19 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct CoordinatorWindowParams {
+public struct AppNavigationNodeWindowParams {
     
-    let showingType: CoordinatorWindowShowingType
+    let showingType: AppNavigationNodeWindowShowingType
     let window: CommonWindowAlias
-    let rootChildCoordinator: Coordinator
+    let rootChildNavigationNode: AppNavigationNode
     
     public init(
-        showingType: CoordinatorWindowShowingType,
-        window: CommonWindowAlias,
-        rootChildCoordinator: Coordinator
+            showingType: AppNavigationNodeWindowShowingType,
+            window: CommonWindowAlias,
+            rootChildNavigationNode: AppNavigationNode
     ) {
         self.showingType = showingType
         self.window = window
-        self.rootChildCoordinator = rootChildCoordinator
+        self.rootChildNavigationNode = rootChildNavigationNode
     }
 }

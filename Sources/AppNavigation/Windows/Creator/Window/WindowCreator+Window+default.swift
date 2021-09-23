@@ -6,16 +6,16 @@
 extension WindowCreator.Window {
     
     static func `default`<
-        DevRootWindowType
+        DevRootWindowPurpose
     >(
-        for windowType: WindowType<
-            DevRootWindowType
+        for windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) -> Create
     where
-        DevRootWindowType
-            : DevRootWindowTypeInterface {
-        switch windowType {
+        DevRootWindowPurpose
+            : DevRootWindowPurposeInterface {
+        switch windowPurpose {
         case .app:
             return { windowID in
                 return AppWindow(

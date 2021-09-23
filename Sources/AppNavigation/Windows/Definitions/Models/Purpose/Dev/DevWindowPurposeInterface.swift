@@ -3,5 +3,5 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public protocol DevWindowTypeInterface:
-    WindowTypeInterface {}
+public protocol DevWindowPurposeInterface:
+    WindowPurposeInterface {}

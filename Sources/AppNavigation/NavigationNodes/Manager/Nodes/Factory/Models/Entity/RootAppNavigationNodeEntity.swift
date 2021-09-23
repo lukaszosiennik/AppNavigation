@@ -3,25 +3,25 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-struct RootCoordinatorEntity<
-    DevRootWindowType
+struct RootAppNavigationNodeEntity<
+    DevRootWindowPurpose
 >
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
-    let windowType: WindowType<
-        DevRootWindowType
+    let windowPurpose: WindowPurpose<
+        DevRootWindowPurpose
     >
     
     let windowID: UUWindowID
     
     init(
         windowEntity: WindowEntity<
-            DevRootWindowType
+            DevRootWindowPurpose
         >
     ) {
-        self.windowType = windowEntity.type
+        self.windowPurpose = windowEntity.purpose
         self.windowID = windowEntity.id
     }
 }

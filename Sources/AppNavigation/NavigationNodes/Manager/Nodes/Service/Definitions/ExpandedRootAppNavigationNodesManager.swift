@@ -3,14 +3,14 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public typealias ExpandedRootCoordinatorsManager<
-    SecondaryDevBranchWindowType
+public typealias ExpandedRootAppNavigationNodesManager<
+    SecondaryDevBranchWindowPurpose
 > =
-    RootCoordinatorsManager<
-        ExpandedDevRootWindowType<
-            SecondaryDevBranchWindowType
+    RootAppNavigationNodesManager<
+        ExpandedDevRootWindowPurpose<
+            SecondaryDevBranchWindowPurpose
         >
     >
     where
-    SecondaryDevBranchWindowType
-        : DevBranchWindowTypeInterface
+    SecondaryDevBranchWindowPurpose
+        : DevBranchWindowPurposeInterface

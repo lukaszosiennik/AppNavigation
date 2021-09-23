@@ -4,27 +4,27 @@
 //
 
 public final class WindowCreatorRegistry<
-    DevRootWindowType
+    DevRootWindowPurpose
 >
 where
-    DevRootWindowType
-        : DevRootWindowTypeInterface {
+    DevRootWindowPurpose
+        : DevRootWindowPurposeInterface {
     
     private var windowCreatorsSet: Set<
         WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >
     > = .init()
     
     public func register(
         windowCreator: WindowCreator<
-            DevRootWindowType
+            DevRootWindowPurpose
         >
     ) throws {
         guard !isRegistered(
-            windowType: windowCreator.entity.type
+            windowPurpose: windowCreator.entity.purpose
         ) else {
-            throw WindowCreatorRegistryError.windowTypeAlreadyRegistered
+            throw WindowCreatorRegistryError.windowPurposeAlreadyRegistered
         }
         
         windowCreatorsSet.insert(
@@ -33,24 +33,24 @@ where
     }
     
     public func isRegistered(
-        windowType: WindowType<
-            DevRootWindowType
+        windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) -> Bool {
         return (try? windowCreator(
-            for: windowType
+            for: windowPurpose
         )) != nil
     }
     
     public func unregister(
-        windowType: WindowType<
-            DevRootWindowType
+        windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) throws {
         guard let windowCreator = try? windowCreator(
-            for: windowType
+            for: windowPurpose
         )  else {
-            throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowType
+            throw WindowCreatorRegistryError.cannotUnregisterNotRegisteredWindowPurpose
         }
         
         windowCreatorsSet.remove(
@@ -70,16 +70,16 @@ where
 extension WindowCreatorRegistry {
     
     func windowCreator(
-        for windowType: WindowType<
-            DevRootWindowType
+        for windowPurpose: WindowPurpose<
+            DevRootWindowPurpose
         >
     ) throws -> WindowCreator<
-        DevRootWindowType
+        DevRootWindowPurpose
     > {
         guard let creator = windowCreatorsSet.first(where: {
-            $0.entity.type == windowType
+            $0.entity.purpose == windowPurpose
         }) else {
-            throw WindowCreatorRegistryError.notRegisteredWindowType
+            throw WindowCreatorRegistryError.notRegisteredWindowPurpose
         }
         
         return creator
