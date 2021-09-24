@@ -5,17 +5,17 @@
 
 import UIKit
 
-final class AppNavigationNodeContentViewController:
-    AppNavigationNodeContentViewControllerInterface {
+final class NavigationNodeContentViewController:
+    NavigationNodeContentViewControllerInterface {
     
-    let type: AppNavigationNodeContentType = .viewController
+    let type: NavigationNodeContentType = .viewController
     
     let viewController: UIViewController
     
-    private let showingType: AppNavigationNodeViewControllerShowingType
+    private let showingType: NavigationNodeViewControllerShowingType
     
     init(
-        params: AppNavigationNodeViewControllerParams
+        params: NavigationNodeViewControllerParams
     ) {
         self.viewController = params.viewController
         self.showingType = params.showingType

@@ -3,16 +3,16 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct AppNavigationNodeWindowParams {
+public struct NavigationNodeWindowParams {
     
-    let showingType: AppNavigationNodeWindowShowingType
+    let showingType: NavigationNodeWindowShowingType
     let window: CommonWindowAlias
-    let rootChildNavigationNode: AppNavigationNode
+    let rootChildNavigationNode: NavigationNode
     
     public init(
-            showingType: AppNavigationNodeWindowShowingType,
+            showingType: NavigationNodeWindowShowingType,
             window: CommonWindowAlias,
-            rootChildNavigationNode: AppNavigationNode
+            rootChildNavigationNode: NavigationNode
     ) {
         self.showingType = showingType
         self.window = window

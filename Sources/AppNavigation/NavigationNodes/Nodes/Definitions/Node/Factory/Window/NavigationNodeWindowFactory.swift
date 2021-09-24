@@ -3,19 +3,19 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class AppNavigationNodeWindowFactory {
+final class NavigationNodeWindowFactory {
     
     static func create<
         DevRootWindowPurpose
     >(
-        showingType: AppNavigationNodeWindowShowingType,
+        showingType: NavigationNodeWindowShowingType,
         windowCreator: WindowCreator<
             DevRootWindowPurpose
         >
-    ) -> AppNavigationNode where
+    ) -> NavigationNode where
         DevRootWindowPurpose
             : DevRootWindowPurposeInterface {
-        let rootChildNavigationNode: AppNavigationNode = .init(
+        let rootChildNavigationNode: NavigationNode = .init(
             type: .viewController(
                 params: .init(
                     showingType: .root,
@@ -23,7 +23,7 @@ final class AppNavigationNodeWindowFactory {
                 )
             )
         )
-        let navigationNode: AppNavigationNode = .init(
+        let navigationNode: NavigationNode = .init(
             type: .window(
                 params: .init(
                     showingType: showingType,

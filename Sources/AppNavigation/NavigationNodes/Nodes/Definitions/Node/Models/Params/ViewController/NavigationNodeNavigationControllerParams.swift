@@ -5,13 +5,13 @@
 
 import UIKit
 
-public struct AppNavigationNodeNavigationControllerParams {
+public struct NavigationNodeNavigationControllerParams {
     
-    let showingType: AppNavigationNodeNavigationControllerShowingType
+    let showingType: NavigationNodeNavigationControllerShowingType
     let rootViewController: UIViewController
     
     public init(
-        showingType: AppNavigationNodeNavigationControllerShowingType,
+        showingType: NavigationNodeNavigationControllerShowingType,
         rootViewController: UIViewController
     ) {
         self.showingType = showingType

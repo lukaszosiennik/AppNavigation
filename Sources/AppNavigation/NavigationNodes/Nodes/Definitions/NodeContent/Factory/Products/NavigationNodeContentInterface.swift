@@ -5,9 +5,9 @@
 
 import UIKit
 
-protocol AppNavigationNodeContentInterface {
+protocol NavigationNodeContentInterface {
     
-    var type: AppNavigationNodeContentType { get }
+    var type: NavigationNodeContentType { get }
     
     var viewController: UIViewController { get }
     

@@ -3,14 +3,14 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public struct AppNavigationNodeTabBarControllerParams {
+public struct NavigationNodeTabBarControllerParams {
     
-    let showingType: AppNavigationNodeTabBarControllerShowingType
-    let rootChildNavigationNodes: [AppNavigationNode]
+    let showingType: NavigationNodeTabBarControllerShowingType
+    let rootChildNavigationNodes: [NavigationNode]
     
     public init(
-        showingType: AppNavigationNodeTabBarControllerShowingType,
-        rootChildNavigationNodes: [AppNavigationNode]
+        showingType: NavigationNodeTabBarControllerShowingType,
+        rootChildNavigationNodes: [NavigationNode]
     ) {
         self.showingType = showingType
         self.rootChildNavigationNodes = rootChildNavigationNodes

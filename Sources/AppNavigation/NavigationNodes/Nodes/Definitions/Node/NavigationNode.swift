@@ -5,9 +5,9 @@
 
 import UIKit
 
-public class AppNavigationNode {
+public class NavigationNode {
 
-    var nodeType: AppNavigationNodeLevelType {
+    var nodeType: NavigationNodeLevelType {
         if parentNavigationNode == nil {
             return .root
         } else {
@@ -15,19 +15,19 @@ public class AppNavigationNode {
         }
     }
     
-    weak var parentNavigationNode: AppNavigationNode?
-    var childNavigationNodes: [AppNavigationNode] = []
+    weak var parentNavigationNode: NavigationNode?
+    var childNavigationNodes: [NavigationNode] = []
     
-    let content: AppNavigationNodeContentInterface
+    let content: NavigationNodeContentInterface
     
     private var viewController: UIViewController {
         return content.viewController
     }
     
     public init(
-        type: AppNavigationNodeType
+        type: NavigationNodeType
     ) {
-        self.content = AppNavigationNodeContentFactory.create(
+        self.content = NavigationNodeContentFactory.create(
             for: type
         )
         
@@ -47,7 +47,7 @@ public class AppNavigationNode {
     }
     
     public func displayChild(
-        _ navigationNode: AppNavigationNode
+        _ navigationNode: NavigationNode
     ) {
         if case .window = navigationNode.content.type {
             return
@@ -71,11 +71,11 @@ public class AppNavigationNode {
     }
     
     func hide(
-        withContent type: AppNavigationNodeContentType
+        withContent type: NavigationNodeContentType
     ) {}
     
     private func bindRootChildrenIfAny(
-        for type: AppNavigationNodeType
+        for type: NavigationNodeType
     ) {
         switch type {
         case .window(let params):
@@ -101,7 +101,7 @@ public class AppNavigationNode {
     }
     
     private func bindRootChild(
-        _ navigationNode: AppNavigationNode
+        _ navigationNode: NavigationNode
     ) {
         bindRootChildren(
             [navigationNode]
@@ -109,7 +109,7 @@ public class AppNavigationNode {
     }
     
     private func bindRootChildren(
-        _ navigationNodes: [AppNavigationNode]
+        _ navigationNodes: [NavigationNode]
     ) {
         childNavigationNodes.append(
             contentsOf: navigationNodes

@@ -5,10 +5,10 @@
 
 import UIKit
 
-final class AppNavigationNodeContentNavigationController:
-    AppNavigationNodeContentViewControllerInterface {
+final class NavigationNodeContentNavigationController:
+    NavigationNodeContentViewControllerInterface {
     
-    let type: AppNavigationNodeContentType = .navigationController
+    let type: NavigationNodeContentType = .navigationController
     
     private let navigationController: UINavigationController
     
@@ -16,10 +16,10 @@ final class AppNavigationNodeContentNavigationController:
         return navigationController
     }
     
-    private let showingType: AppNavigationNodeNavigationControllerShowingType
+    private let showingType: NavigationNodeNavigationControllerShowingType
     
     init(
-        params: AppNavigationNodeNavigationControllerParams
+        params: NavigationNodeNavigationControllerParams
     ) {
         self.navigationController = .init(
             rootViewController: params.rootViewController

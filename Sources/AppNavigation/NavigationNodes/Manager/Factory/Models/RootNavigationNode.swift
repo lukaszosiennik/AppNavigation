@@ -3,15 +3,15 @@
 //  Copyright © 2021 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-struct RootAppNavigationNode<
+struct RootNavigationNode<
     DevRootWindowPurpose
 >
 where
     DevRootWindowPurpose
         : DevRootWindowPurposeInterface {
     
-    let entity: RootAppNavigationNodeEntity<
+    let entity: RootNavigationNodeEntity<
         DevRootWindowPurpose
     >
-    let navigationNode: AppNavigationNode
+    let navigationNode: NavigationNode
 }

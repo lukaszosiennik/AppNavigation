@@ -5,5 +5,5 @@
 
 import commons
 
-typealias AppNavigationNodeLevelType =
+typealias NavigationNodeLevelType =
     HierarchyNodeLevelType

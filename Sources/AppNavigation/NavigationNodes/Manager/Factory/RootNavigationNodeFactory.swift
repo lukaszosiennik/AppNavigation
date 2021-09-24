@@ -3,7 +3,7 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class RootAppNavigationNodeFactory {
+final class RootNavigationNodeFactory {
     
     static func create<
         DevRootWindowPurpose
@@ -11,7 +11,7 @@ final class RootAppNavigationNodeFactory {
         windowCreator: WindowCreator<
             DevRootWindowPurpose
         >
-    ) -> RootAppNavigationNode<
+    ) -> RootNavigationNode<
         DevRootWindowPurpose
     > where
         DevRootWindowPurpose
@@ -20,7 +20,7 @@ final class RootAppNavigationNodeFactory {
             entity: .init(
                 windowEntity: windowCreator.entity
             ),
-            navigationNode: AppNavigationNodeWindowFactory.create(
+            navigationNode: NavigationNodeWindowFactory.create(
                 showingType: .makeVisible,
                 windowCreator: windowCreator
             )

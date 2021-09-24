@@ -3,7 +3,7 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-extension RootAppNavigationNodeFactory {
+extension RootNavigationNodeFactory {
     
     public static func create<
         DevRootWindowPurpose
@@ -11,7 +11,7 @@ extension RootAppNavigationNodeFactory {
         createViewController: @autoclosure @escaping WindowCreator<
             DevRootWindowPurpose
         >.ViewController.Create
-    ) -> RootAppNavigationNode<
+    ) -> RootNavigationNode<
         DevRootWindowPurpose
     >
     where
@@ -36,7 +36,7 @@ extension RootAppNavigationNodeFactory {
         createViewController: @autoclosure @escaping WindowCreator<
             DevRootWindowPurpose
         >.ViewController.Create
-    ) -> RootAppNavigationNode<
+    ) -> RootNavigationNode<
         DevRootWindowPurpose
     >
     where

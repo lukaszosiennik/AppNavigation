@@ -3,10 +3,10 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public enum AppNavigationNodeType {
+public enum NavigationNodeType {
 
-    case window(params: AppNavigationNodeWindowParams)
-    case tabBarController(params: AppNavigationNodeTabBarControllerParams)
-    case navigationController(params: AppNavigationNodeNavigationControllerParams)
-    case viewController(params: AppNavigationNodeViewControllerParams)
+    case window(params: NavigationNodeWindowParams)
+    case tabBarController(params: NavigationNodeTabBarControllerParams)
+    case navigationController(params: NavigationNodeNavigationControllerParams)
+    case viewController(params: NavigationNodeViewControllerParams)
 }

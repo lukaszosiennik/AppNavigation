@@ -3,31 +3,31 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-final class AppNavigationNodeContentFactory {
+final class NavigationNodeContentFactory {
 
     static func create(
-        for navigationNodeType: AppNavigationNodeType
-    ) -> AppNavigationNodeContentInterface {
+        for navigationNodeType: NavigationNodeType
+    ) -> NavigationNodeContentInterface {
         switch navigationNodeType {
         case .window(let params):
-            return AppNavigationNodeContentWindow(
+            return NavigationNodeContentWindow(
                 window: params.window,
                 showingType: params.showingType,
                 rootViewController: params.rootChildNavigationNode.content.viewController
             )
         case .tabBarController(let params):
-            return AppNavigationNodeContentTabBarController(
+            return NavigationNodeContentTabBarController(
                 showingType: params.showingType,
                 viewControllers: params.rootChildNavigationNodes.map {
                     $0.content.viewController
                 }
             )
         case .navigationController(let params):
-            return AppNavigationNodeContentNavigationController(
+            return NavigationNodeContentNavigationController(
                 params: params
             )
         case .viewController(let params):
-            return AppNavigationNodeContentViewController(
+            return NavigationNodeContentViewController(
                 params: params
             )
         }

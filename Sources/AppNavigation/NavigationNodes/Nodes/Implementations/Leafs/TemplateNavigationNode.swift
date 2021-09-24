@@ -5,11 +5,11 @@
 
 import UIKit
 
-public final class TemplateAppNavigationNode:
-    AppNavigationNode {
+public final class TemplateNavigationNode:
+    NavigationNode {
     
     public override init(
-        type: AppNavigationNodeType = .navigationController(
+        type: NavigationNodeType = .navigationController(
             params: .init(
                 showingType: .present,
                 rootViewController: UIViewController()

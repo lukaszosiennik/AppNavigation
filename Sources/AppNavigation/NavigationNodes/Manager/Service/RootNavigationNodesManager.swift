@@ -3,22 +3,22 @@
 //  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
 //
 
-public final class RootAppNavigationNodesManager<
+public final class RootNavigationNodesManager<
     DevRootWindowPurpose:
         DevRootWindowPurposeInterface
 >:
-    RootAppNavigationNodesManagerInterface {
+    RootNavigationNodesManagerInterface {
     
     public let windowCreatorRegistry: WindowCreatorRegistry<
         DevRootWindowPurpose
     > = .init()
     
-    private var rootAppNavigationNodesSet: Set<
-        RootAppNavigationNode<
+    private var rootNavigationNodesSet: Set<
+        RootNavigationNode<
             DevRootWindowPurpose
         >
     > = .init()
-    private var keyRootAppNavigationNode: RootAppNavigationNode<
+    private var keyRootNavigationNode: RootNavigationNode<
         DevRootWindowPurpose
     >?
     
@@ -29,46 +29,46 @@ public final class RootAppNavigationNodesManager<
             DevRootWindowPurpose
         >
     ) throws {
-        guard windowPurpose != keyRootAppNavigationNode?.entity.windowPurpose else {
-            throw RootAppNavigationNodesManagerError.cannotLoadKeyWindow
+        guard windowPurpose != keyRootNavigationNode?.entity.windowPurpose else {
+            throw RootNavigationNodesManagerError.cannotLoadKeyWindow
         }
         
         if windowPurpose.isDev {
             guard windowCreatorRegistry.isRegistered(
                     windowPurpose: .app
             ) else {
-                throw RootAppNavigationNodesManagerError.cannotLoadDevWindowPurposeIfAppWindowPurposeIsNotRegistered
+                throw RootNavigationNodesManagerError.cannotLoadDevWindowPurposeIfAppWindowPurposeIsNotRegistered
             }
         }
         
-        let currentRootAppNavigationNode: RootAppNavigationNode<
+        let currentRootNavigationNode: RootNavigationNode<
             DevRootWindowPurpose
         >
-        if let appNavigationNode = try? rootAppNavigationNode(
+        if let navigationNode = try? rootNavigationNode(
             for: windowPurpose
         ) {
-            currentRootAppNavigationNode = appNavigationNode
+            currentRootNavigationNode = navigationNode
         } else {
             guard let windowCreator = try? windowCreatorRegistry.windowCreator(
                 for: windowPurpose
             ) else {
-                throw RootAppNavigationNodesManagerError.cannotLoadNotRegisteredWindowPurpose
+                throw RootNavigationNodesManagerError.cannotLoadNotRegisteredWindowPurpose
             }
             
-            currentRootAppNavigationNode = RootAppNavigationNodeFactory.create(
+            currentRootNavigationNode = RootNavigationNodeFactory.create(
                 windowCreator: windowCreator
             )
             
-            rootAppNavigationNodesSet.insert(
-                currentRootAppNavigationNode
+            rootNavigationNodesSet.insert(
+                currentRootNavigationNode
             )
         }
         
-        changeKeyRootAppNavigationNode(
-            using: currentRootAppNavigationNode
+        changeKeyRootNavigationNode(
+            using: currentRootNavigationNode
         )
         
-        currentRootAppNavigationNode.navigationNode.display()
+        currentRootNavigationNode.navigationNode.display()
     }
     
     public func unload(
@@ -76,85 +76,85 @@ public final class RootAppNavigationNodesManager<
             DevRootWindowPurpose
         >
     ) throws {
-        guard windowPurpose != keyRootAppNavigationNode?.entity.windowPurpose else {
-            throw RootAppNavigationNodesManagerError.cannotUnloadKeyWindow
+        guard windowPurpose != keyRootNavigationNode?.entity.windowPurpose else {
+            throw RootNavigationNodesManagerError.cannotUnloadKeyWindow
         }
         
         guard !windowPurpose.isApp else {
-            throw RootAppNavigationNodesManagerError.cannotUnloadAppWindowPurpose
+            throw RootNavigationNodesManagerError.cannotUnloadAppWindowPurpose
         }
         
         guard (try? windowCreatorRegistry.windowCreator(
             for: windowPurpose
         )) != nil else {
-            throw RootAppNavigationNodesManagerError.cannotUnloadNotRegisteredWindowPurpose
+            throw RootNavigationNodesManagerError.cannotUnloadNotRegisteredWindowPurpose
         }
         
-        guard let navigationNode = try? rootAppNavigationNode(
+        guard let navigationNode = try? rootNavigationNode(
             for: windowPurpose
         ) else {
-            throw RootAppNavigationNodesManagerError.cannotUnloadNotLoadedWindowPurpose
+            throw RootNavigationNodesManagerError.cannotUnloadNotLoadedWindowPurpose
         }
         
-        rootAppNavigationNodesSet.remove(
+        rootNavigationNodesSet.remove(
             navigationNode
         )
     }
     
-    private func changeKeyRootAppNavigationNode(
-        using rootAppNavigationNode: RootAppNavigationNode<
+    private func changeKeyRootNavigationNode(
+        using rootNavigationNode: RootNavigationNode<
             DevRootWindowPurpose
         >
     ) {
-        appNavigationNodeContentWindow(
-            from: keyRootAppNavigationNode
+        navigationNodeContentWindow(
+            from: keyRootNavigationNode
         )?.delegate = nil
-        appNavigationNodeContentWindow(
-            from: rootAppNavigationNode
+        navigationNodeContentWindow(
+            from: rootNavigationNode
         )?.delegate = self
         
-        keyRootAppNavigationNode = rootAppNavigationNode
+        keyRootNavigationNode = rootNavigationNode
     }
 }
 
-extension RootAppNavigationNodesManager {
+extension RootNavigationNodesManager {
         
-    func rootAppNavigationNode(
+    func rootNavigationNode(
         for windowPurpose: WindowPurpose<
             DevRootWindowPurpose
         >
-    ) throws -> RootAppNavigationNode<
+    ) throws -> RootNavigationNode<
         DevRootWindowPurpose
     > {
-        guard let appNavigationNode = rootAppNavigationNodesSet.first(where: {
+        guard let navigationNode = rootNavigationNodesSet.first(where: {
             $0.entity.windowPurpose == windowPurpose
         }) else {
-            throw RootAppNavigationNodesManagerError.notLoadedWindowPurpose
+            throw RootNavigationNodesManagerError.notLoadedWindowPurpose
         }
         
-        return appNavigationNode
+        return navigationNode
     }
 }
 
-extension RootAppNavigationNodesManager {
+extension RootNavigationNodesManager {
     
-    private func appNavigationNodeContentWindow(
-        from rootNavigationNode: RootAppNavigationNode<
+    private func navigationNodeContentWindow(
+        from rootNavigationNode: RootNavigationNode<
             DevRootWindowPurpose
         >?
-    ) -> AppNavigationNodeContentWindow? {
-        return rootNavigationNode?.navigationNode.content as? AppNavigationNodeContentWindow
+    ) -> NavigationNodeContentWindow? {
+        return rootNavigationNode?.navigationNode.content as? NavigationNodeContentWindow
     }
 }
 
-extension RootAppNavigationNodesManager: AppNavigationNodeContentWindowDelegate {
+extension RootNavigationNodesManager: NavigationNodeContentWindowDelegate {
     
     public func switchWindowActionInvoked(
         on windowID: UUWindowID
     ) {
         // TODO: this code should be enabled only for DEBUG builds
 //        #if DEBUG
-        guard let windowPurpose = rootAppNavigationNodesSet.first(where: {
+        guard let windowPurpose = rootNavigationNodesSet.first(where: {
             $0.entity.windowID == windowID
         })?.entity.windowPurpose else {
             return

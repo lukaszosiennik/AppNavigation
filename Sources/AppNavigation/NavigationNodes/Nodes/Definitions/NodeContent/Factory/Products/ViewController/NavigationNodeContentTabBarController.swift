@@ -5,10 +5,10 @@
 
 import UIKit
 
-final class AppNavigationNodeContentTabBarController:
-    AppNavigationNodeContentViewControllerInterface {
+final class NavigationNodeContentTabBarController:
+    NavigationNodeContentViewControllerInterface {
     
-    let type: AppNavigationNodeContentType = .tabBarController
+    let type: NavigationNodeContentType = .tabBarController
     
     private let tabBarController: UITabBarController
     
@@ -16,10 +16,10 @@ final class AppNavigationNodeContentTabBarController:
         return tabBarController
     }
     
-    private let showingType: AppNavigationNodeTabBarControllerShowingType
+    private let showingType: NavigationNodeTabBarControllerShowingType
     
     init(
-        showingType: AppNavigationNodeTabBarControllerShowingType,
+        showingType: NavigationNodeTabBarControllerShowingType,
         viewControllers: [UIViewController]
     ) {
         self.tabBarController = .init()
