@@ -4,15 +4,18 @@
 //
 
 import UIKit
+import commons
 
 public class NavigationNode {
 
-    var nodeType: NavigationNodeLevelType {
-        if parentNavigationNode == nil {
-            return .root
-        } else {
-            return .subtree
-        }
+    var nodeLevelType: NavigationNodeLevelType {
+        return parentNavigationNode == nil ?
+            .root : .subtree
+    }
+    
+    var nodeChildrenType: NavigationNodeChildrenType {
+        return childNavigationNodes.count > 0 ?
+            .branch : .leaf
     }
     
     weak var parentNavigationNode: NavigationNode?
