@@ -1,6 +1,6 @@
 //
 //  Created by Łukasz Osiennik on 23/09/2021.
-//  Copyright © 2020 open plainness (https://www.openplainness.com). All rights reserved.
+//  Copyright © 2020 openplainness (https://www.openplainness.com). All rights reserved.
 //
 
 public enum AppNavigationType {
