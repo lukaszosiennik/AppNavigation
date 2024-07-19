@@ -153,7 +153,7 @@ extension RootNavigationNodesManager: NavigationNodeContentWindowDelegate {
         on windowID: UUWindowID
     ) {
         // TODO: this code should be enabled only for DEBUG builds
-//        #if DEBUG
+        #if DEBUG
         guard let windowPurpose = rootNavigationNodesSet.first(where: {
             $0.entity.windowID == windowID
         })?.entity.windowPurpose else {
@@ -170,6 +170,6 @@ extension RootNavigationNodesManager: NavigationNodeContentWindowDelegate {
                 .app
             )
         }
-//        #endif
+        #endif
     }
 }
