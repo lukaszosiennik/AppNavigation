@@ -4,7 +4,6 @@
 //
 
 import UIKit
-import commons
 
 public class NavigationNode {
 

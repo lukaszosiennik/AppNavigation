@@ -3,7 +3,11 @@
 //  Copyright © 2020 openplainness (https://www.openplainness.com). All rights reserved.
 //
 
-import commons
-
 typealias NavigationNodeLevelType =
     HierarchyNodeLevelType
+
+enum HierarchyNodeLevelType {
+    
+    case root
+    case subtree
+}

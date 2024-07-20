@@ -15,20 +15,11 @@ let package = Package(
             ]
         ),
     ],
-    dependencies: [
-        .package(
-            url: "git@gitlab.com:openplainness/libraries/apple/commons.git",
-            .branch("develop")
-        ),
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "AppNavigation",
-            dependencies: [
-                .byName(
-                    name: "commons"
-                ),
-            ]
+            dependencies: []
         ),
     ]
 )
