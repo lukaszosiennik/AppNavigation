@@ -17,3 +17,7 @@
 ### High-level navigation layers
 
 ![image info](./docs/UML/layers/high-level_navigation-layers.png)
+
+### UIWindow exemplary purposes
+
+![image info](./docs/UML/UIWindow_exemplary-purposes.png)
