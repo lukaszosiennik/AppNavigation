@@ -15,11 +15,9 @@ let package = Package(
             ]
         ),
     ],
-    dependencies: [],
     targets: [
         .target(
-            name: "AppNavigation",
-            dependencies: []
+            name: "AppNavigation"
         ),
     ]
 )
