@@ -1,6 +1,6 @@
 //
 //  Created by Łukasz Osiennik on 24/03/2020.
-//  Copyright © 2020 openplainness (https://www.openplainness.com). All rights reserved.
+//  Copyright © 2020 Łukasz Osiennik. All rights reserved.
 //
 
 import UIKit

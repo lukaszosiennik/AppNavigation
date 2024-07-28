@@ -2,11 +2,11 @@
 
 ## UML diagrams
 
-### Coordinator based navigation architecture
+### Coordinator-based navigation architecture
 
 ![image info](./docs/UML/class-diagrams/Coordinator-based_navigation-architecture.png)
 
-### UIWindow based navigation architecture
+### UIWindow-based navigation architecture
 
 ![image info](./docs/UML/class-diagrams/UIWindow-based_navigation-architecture.png)
 
